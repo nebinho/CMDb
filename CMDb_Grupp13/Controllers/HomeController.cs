@@ -1,4 +1,6 @@
 ﻿using CMDb_Grupp13.Models;
+using CMDb_Grupp13.Models.ViewModels;
+using CMDb_Grupp13.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -11,10 +13,18 @@ namespace CMDb_Grupp13.Controllers
 {
     public class HomeController : Controller
     {
+        private IRepository omdbRepo;
 
-        public IActionResult Index()
+        public HomeController(IRepository omdbRepo)
         {
-            return View();
+            this.omdbRepo = omdbRepo;
+        }
+        public async Task<IActionResult> Index()
+        {
+            var search = await omdbRepo.GetSearchAsync();
+            var model = new SearchViewModel(search);
+
+            return View(model);
         }
 
     }
