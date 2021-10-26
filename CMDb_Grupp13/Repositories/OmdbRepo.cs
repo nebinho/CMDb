@@ -19,6 +19,6 @@ namespace CMDb_Grupp13.Repositories
         }
 
         public async Task<SearchDto> GetSearchAsync() => await apiClient.GetAsync<SearchDto>($"{baseEndpoint.Insert(26, s)}");
-
+       
     }
 }
