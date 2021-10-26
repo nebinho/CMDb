@@ -1,4 +1,6 @@
 ﻿using CMDb_Grupp13.Models;
+using CMDb_Grupp13.Models.ViewModels;
+using CMDb_Grupp13.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -11,10 +13,20 @@ namespace CMDb_Grupp13.Controllers
 {
     public class HomeController : Controller
     {
+        private IRepository cmdbRepo;
 
-        public IActionResult Index()
+
+        public HomeController(IRepository cmdbRepo)
         {
-            return View();
+            this.cmdbRepo = cmdbRepo;
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            var topList = await cmdbRepo.GetTopListAsync();
+            var model = new TopListViewModel(topList);
+
+            return View(model);
         }
 
     }
