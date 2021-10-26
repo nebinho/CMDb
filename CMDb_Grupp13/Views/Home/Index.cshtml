@@ -1,4 +1,4 @@
-﻿@model TopListViewModel
+﻿@model HomeViewModel
 
 <!DOCTYPE HTML>
 <!--
@@ -29,6 +29,9 @@
 
             <!-- Nav -->
             <nav id="nav">
+                    <p class="style2">
+                        @Html.DropDownListFor(x => x.SelectedMovie, new SelectList(Model.Search, "Value", "Text"))
+                    </p>
                 <ul>
                     <li class="current"><a href="index.html">Home</a></li>
                     <li>

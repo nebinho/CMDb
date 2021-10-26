@@ -7,16 +7,16 @@ using System.Threading.Tasks;
 
 namespace CMDb_Grupp13.Repositories
 {
-    public class CmdbRepo : IRepository
+    public class CmdbRepo : IRepositoryCmdb
     {
-        private readonly IApiClient apiClient;
-        private readonly string baseEndpoint = "https://grupp9.dsvkurs.miun.se/";
-        public CmdbRepo(IApiClient apiClient)
+        private readonly IApiClientCmdb apiClient;
+        private readonly string baseEndpoint = "https://grupp9.dsvkurs.miun.se/api";
+        public CmdbRepo(IApiClientCmdb apiClient)
         {
             this.apiClient = apiClient;
         }
 
-        public async Task<IEnumerable<TopListDto>> GetTopListAsync() => await apiClient.GetAsync<IEnumerable<TopListDto>>($"{baseEndpoint}api/TopList");
+        public async Task<IEnumerable<TopListDto>> GetTopListAsync() => await apiClient.GetAsync<IEnumerable<TopListDto>>($"{baseEndpoint}/TopList");
 
     }
 }

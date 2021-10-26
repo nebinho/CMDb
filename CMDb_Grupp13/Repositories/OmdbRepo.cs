@@ -7,23 +7,18 @@ using System.Threading.Tasks;
 
 namespace CMDb_Grupp13.Repositories
 {
-    public class OmdbRepo 
+    public class OmdbRepo : IRepositoryOmdb
     {
-        //private readonly IApiClient apiClient;
-        //private readonly string baseEndpoint = "http://www.omdbapi.com/?s=batman&apikey=f97b092d";
-        //public OmdbRepo(IApiClient apiClient)
-        //{
-        //    this.apiClient = apiClient;
-        //}
+        string s = "terminator";
+        private readonly IApiClientCmdb apiClient;
+        private readonly string baseEndpoint = "http://www.omdbapi.com/?apikey=f97b092d&s=";
 
+        public OmdbRepo(IApiClientCmdb apiClient)
+        {
+            this.apiClient = apiClient;
+        }
 
-
-        //public async Task<IEnumerable<MovieDto>> GetSearchAsync() => await apiClient.GetAsync<IEnumerable<MovieDto>>($"{baseEndpoint}");
-
-        //Task<IEnumerable<MovieDto>> IRepository.GetSearch()
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public async Task<SearchDto> GetSearchAsync() => await apiClient.GetAsync<SearchDto>($"{baseEndpoint}/{s}");
        
     }
 }
