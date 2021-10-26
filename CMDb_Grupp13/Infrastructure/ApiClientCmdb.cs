@@ -1,5 +1,4 @@
-﻿using CMDb_Grupp13.Models;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace CMDb_Grupp13.Infrastructure
 {
-    public class OmdbApiClient : IApiClient
+
+    public class ApiClientCmdb : IApiClientCmdb
     {
         private readonly HttpClient client = new HttpClient();
-
-        async Task<SearchDto> IApiClient.GetAsync<SearchDtoT>(string endpoint)
+        public async Task<T> GetAsync<T>(string endpoint)
         {
             var request = new HttpRequestMessage(HttpMethod.Get, endpoint);
             try
@@ -22,15 +21,19 @@ namespace CMDb_Grupp13.Infrastructure
                 if (response.StatusCode == HttpStatusCode.OK)
                 {
                     var responseJson = await response.Content.ReadAsStringAsync();
-                    var data = JsonConvert.DeserializeObject<SearchDto>(responseJson);
+                    var data = JsonConvert.DeserializeObject<T>(responseJson);
                     return data;
                 }
+                if (response.StatusCode == HttpStatusCode.TooManyRequests)
+                {
 
-                throw new Exception("Kunde inte etablera en kontakt med API:t");
+                    throw new Exception("För många anrop mot api");
+                }
+                throw new Exception("Felaktigt api-anrop");
+
             }
             catch (Exception)
             {
-
                 throw;
             }
         }

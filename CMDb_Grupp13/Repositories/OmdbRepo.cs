@@ -7,18 +7,18 @@ using System.Threading.Tasks;
 
 namespace CMDb_Grupp13.Repositories
 {
-    public class OmdbRepo : IRepository
+    public class OmdbRepo : IRepositoryOmdb
     {
         string s = "terminator";
-        private readonly IApiClient apiClient;
-        private readonly string baseEndpoint = "http://www.omdbapi.com/?s=&apikey=f97b092d";
+        private readonly IApiClientCmdb apiClient;
+        private readonly string baseEndpoint = "http://www.omdbapi.com/?apikey=f97b092d&s=";
 
-        public OmdbRepo(IApiClient apiClient)
+        public OmdbRepo(IApiClientCmdb apiClient)
         {
             this.apiClient = apiClient;
         }
 
-        public async Task<SearchDto> GetSearchAsync() => await apiClient.GetAsync<SearchDto>($"{baseEndpoint.Insert(26, s)}");
+        public async Task<SearchDto> GetSearchAsync() => await apiClient.GetAsync<SearchDto>($"{baseEndpoint}/{s}");
        
     }
 }

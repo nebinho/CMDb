@@ -1,5 +1,4 @@
-﻿@model TopListViewModel
-@model SearchViewModel
+﻿@model HomeViewModel
 
 <!DOCTYPE HTML>
 <!--
@@ -28,11 +27,9 @@
 
             <!-- Nav -->
             <nav id="nav">
-                <form asp-action="Search" method="get">
                     <p class="style2">
                         @Html.DropDownListFor(x => x.SelectedMovie, new SelectList(Model.Search, "Value", "Text"))
                     </p>
-                </form>
                 <ul>
                     <li class="current"><a href="index.html">Home</a></li>
                     <li>

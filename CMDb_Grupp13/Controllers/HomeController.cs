@@ -13,30 +13,35 @@ namespace CMDb_Grupp13.Controllers
 {
     public class HomeController : Controller
     {
-        private IRepository omdbRepo;
-        private IRepository cmdbRepo;
+        private IRepositoryCmdb cmdbRepo;
+        private IRepositoryOmdb omdbRepo;
 
 
-        public HomeController(IRepository cmdbRepo)
+        public HomeController(IRepositoryCmdb cmdbRepo, IRepositoryOmdb omdbRepo)
         {
             this.cmdbRepo = cmdbRepo;
-        }
-
-        public HomeController(IRepository omdbRepo)
-        {
             this.omdbRepo = omdbRepo;
         }
-        public async Task<IActionResult> Index()
+
         public async Task<IActionResult> Index()
         {
-            var search = await omdbRepo.GetSearchAsync();
-            var model = new SearchViewModel(search);
+            try
+            {
+                var search = await omdbRepo.GetSearchAsync();
+                var topList = await cmdbRepo.GetTopListAsync();
 
-            return View(model);
-            var topList = await cmdbRepo.GetTopListAsync();
-            var model = new TopListViewModel(topList);
+                var model = new HomeViewModel(topList, search);
 
-            return View(model);
+                return View(model);
+
+            }
+            catch (Exception)
+            {
+                var model = new HomeViewModel();
+                ModelState.AddModelError(string.Empty, "Kunde inte få kontakt med API:t");
+                return View(model);
+                throw;
+            }
         }
 
     }

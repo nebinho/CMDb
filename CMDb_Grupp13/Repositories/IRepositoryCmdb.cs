@@ -6,15 +6,11 @@ using System.Threading.Tasks;
 
 namespace CMDb_Grupp13.Repositories
 {
-    public interface IRepository
+    public interface IRepositoryCmdb
     {
         
        // Task<IEnumerable<TopListDto>> GetSearch();
        Task<IEnumerable<TopListDto>> GetTopListAsync();
-        /// <summary>
-        /// Retrieves a search
-        /// </summary>
-        /// <returns></returns>
-        Task<SearchDto> GetSearchAsync();
+
     }
 }
