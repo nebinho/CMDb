@@ -13,7 +13,6 @@ namespace CMDb_Grupp13.Repositories
         /// </summary>
         /// <returns></returns>
         Task<SearchDto> GetSearchAsync(string searchString);
-        Task<IndexDto> GetMovieInformationAsync(string imdbID);
-        Task<DetailsDto> GetMovieDetailsAsync(string imdbID);
+        Task<MovieDetailsDto> GetMovieAsync(string imdbID); 
     }
 }

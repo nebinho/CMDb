@@ -10,13 +10,14 @@ namespace CMDb_Grupp13.Repositories
     public class CmdbRepo : IRepositoryCmdb
     {
         private readonly IApiClientCmdb apiClient;
-        private readonly string baseEndpoint = "https://grupp9.dsvkurs.miun.se/api";
+        private readonly string baseEndpoint = "https://grupp9.dsvkurs.miun.se/api/";
+        private readonly string topFourEndpoint = "Toplist?sort=desc&count=4&type=ratings";
         public CmdbRepo(IApiClientCmdb apiClient)
         {
             this.apiClient = apiClient;
         }
 
-        public async Task<IEnumerable<TopListDto>> GetTopListAsync() => await apiClient.GetAsync<IEnumerable<TopListDto>>($"{baseEndpoint}/TopList");
+        public async Task<IEnumerable<TopListDto>> GetTopListAsync() => await apiClient.GetAsync<IEnumerable<TopListDto>>($"{baseEndpoint}{topFourEndpoint}");
 
     }
 }
