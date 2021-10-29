@@ -8,9 +8,8 @@ namespace CMDb_Grupp13.Models
     public class TopListDto
     {
         public string ImdbID { get; set; }
-        public int NumberOfLikes { get; set; }
-        public int NumberOfDislikes { get; set; }
-        public string TopMovies { get; set; }
+        public int numberOfLikes { get; set; }
+        public int numberOfDislikes { get; set; }
 
     }
 }

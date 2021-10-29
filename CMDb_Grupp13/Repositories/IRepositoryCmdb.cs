@@ -8,9 +8,7 @@ namespace CMDb_Grupp13.Repositories
 {
     public interface IRepositoryCmdb
     {
-        
-       // Task<IEnumerable<TopListDto>> GetSearch();
-       Task<IEnumerable<TopListDto>> GetTopListAsync();
+        Task<IEnumerable<TopListDto>> GetTopListAsync();
 
     }
 }

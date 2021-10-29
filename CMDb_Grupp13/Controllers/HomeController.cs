@@ -22,18 +22,37 @@ namespace CMDb_Grupp13.Controllers
             this.cmdbRepo = cmdbRepo;
             this.omdbRepo = omdbRepo;
         }
-
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
             try
             {
-                var search = await omdbRepo.GetSearchAsync();
+
                 var topList = await cmdbRepo.GetTopListAsync();
 
-                var model = new HomeViewModel(topList, search);
+                
+                List<MovieDetailsDto> movieList = new List<MovieDetailsDto>();
+
+                foreach (var m in topList)
+                {
+                    
+                    var movie = await omdbRepo.GetMovieAsync(m.ImdbID);
+                    movieList.Add(movie);
+                }
+
+
+                if (!String.IsNullOrEmpty(searchString))
+                {
+                    var searchResult = await omdbRepo.GetSearchAsync(searchString);
+                }
+
+                var model = new HomeViewModel
+                {
+                    TopList = topList.ToList(),
+                    //ImdbID = imdbIDQuery.ToString(),
+                    Movies = movieList
+                };
 
                 return View(model);
-
             }
             catch (Exception)
             {
@@ -43,6 +62,7 @@ namespace CMDb_Grupp13.Controllers
                 throw;
             }
         }
+
 
     }
 }
