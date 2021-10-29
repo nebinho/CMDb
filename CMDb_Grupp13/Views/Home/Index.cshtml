@@ -1,8 +1,118 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@model HomeViewModel
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<!DOCTYPE HTML>
+<!--
+    Escape Velocity by HTML5 UP
+    html5up.net |
+    Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<head>
+    <title>Escape Velocity by HTML5 UP</title>
+    <link rel="icon" href="~/images/popcorn_icon.ico">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link href="~/css/main.css" rel="stylesheet" />
+
+</head>
+<body>
+    <header>
+        <h2>CMDB</h2>
+        <p><i>- för oss filmälskare</i></p>
+        <div class="logo"></div>
+    </header>
+
+
+    <div class="flexcontainer">
+        <div class="flex-picture-left">
+            <h2>Toppfilmen just nu!</h2>
+            <a href="img/photo1.jpg" target="_blank">
+                <img src="~/images/movietheater.jpg" alt="">
+            </a>
+            <h2><a href="#"></a>Titel</h2>
+            <p>Lorem ipsum Lorem ipsum Lorem ipsum</p>
+            <button class="button-style">Läs mer</button>
+
+        </div>
+     
+
+    </div>
+    <div class="flexcontainer2">
+
+        <div class="flex-picture-left-bottom">
+
+            <a href="" target="_blank">
+                @*<img src="" alt="">*@
+            </a>
+
+            <div>
+                <img src="~/images/imdb.png" />
+            </div>
+            <h2>Rating 1</h2>
+
+            <p></p>
+
+        </div>
+        <div class="flex-picture-mid-bottom">
+
+            <a href="" target="_blank">
+                @*<img src="" alt="">*@
+            </a>
+
+            <img src="~/images/tomato.png" />
+            <h2>Rating 2</h2>
+            <p></p>
+
+        </div>
+        <div class="flex-picture-right-bottom">
+
+            <a href="" target="_blank">
+                @*<img src="" alt="">*@
+            </a>
+
+            <img src="~/images/meta.png" />
+            <h2>Rating 3</h2>
+            <p></p>
+
+        </div>
+    </div>
+
+    <div class="flexcontainer3">
+
+        <div class="flex-picture-left-bottom">
+            <h2>#2</h2>
+            <a href="~/images/movietheater.jpg" target="_blank">
+                <img src="~/images/movietheater.jpg" alt="">
+            </a>
+            <h2>Titel</h2>
+            <p>Lorem ipsum Lorem ipsum Lorem ipsum</p>
+            <button class="button-style">Läs mer</button>
+        </div>
+        <div class="flex-picture-mid-bottom">
+            <h2>#3</h2>
+            <a href="~/images/movietheater.jpg" target="_blank">
+                <img src="~/images/movietheater.jpg" alt="">
+            </a>
+            <h2>Titel</h2>
+            <p>Lorem ipsum Lorem ipsum Lorem ipsum</p>
+            <button class="button-style">Läs mer</button>
+        </div>
+        <div class="flex-picture-right-bottom">
+            <h2>#4</h2>
+            <a href="~/images/movietheater.jpg" target="_blank">
+                <img src="~/images/movietheater.jpg" alt="">
+            </a>
+            <h2>Titel</h2>
+            <p>Lorem ipsum Lorem ipsum Lorem ipsum</p>
+            <button class="button-style">Läs mer</button>
+        </div>
+    </div>
+
+    <footer>
+
+        <p>Copyright Apollo13</p>
+    </footer>
+
+
+</body>
+</html>
