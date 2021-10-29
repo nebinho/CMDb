@@ -7,7 +7,7 @@ namespace CMDb_Grupp13.Models
 {
     public class SearchDto
     {
-       public IEnumerable<MovieDto> Search { get; set; }
+       public IEnumerable<MovieSearchDto> Search { get; set; }
         
     }
 }

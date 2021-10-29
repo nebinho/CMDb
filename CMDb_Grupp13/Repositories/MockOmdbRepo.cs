@@ -18,18 +18,29 @@ namespace CMDb_Grupp13.Repositories
             basePath = $@"{ environment.ContentRootPath}\Mock\";
         }
 
-        private SearchDto GetTestData<SearchDto>(string testfile)
+        private SearchDto GetSearchData<SearchDto>(string testfile)
         {
             var path = $"{basePath}{testfile}";
             string data = File.ReadAllText(path);
             return JsonConvert.DeserializeObject<SearchDto>(data);
         }
+        private MovieDetailsDto GetMovieData<MovieDetailsDto>(string testfile)
+        {
+            var path = $"{basePath}{testfile}";
+            string data = File.ReadAllText(path);
+            return JsonConvert.DeserializeObject<MovieDetailsDto>(data);
+        }
 
-
-        public async Task<SearchDto> GetSearchAsync()
+        public async Task<SearchDto> GetSearchAsync(string searchString)
         {
             await Task.Delay(0);
-            return GetTestData<SearchDto>("search.json");
+            return GetSearchData<SearchDto>("search.json");
+        }
+
+        public async Task<MovieDetailsDto> GetMovieAsync(string imdbID)
+        {
+            await Task.Delay(0);
+            return GetMovieData<MovieDetailsDto>("movie.json");
         }
     }
 }

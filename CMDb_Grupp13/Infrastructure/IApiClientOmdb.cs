@@ -9,7 +9,8 @@ namespace CMDb_Grupp13.Infrastructure
 {
     interface IApiClientOmdb
     {
-        Task<SearchDto> GetAsync<SearchDtoT>(string endpoint);
+        Task<SearchDto> GetSearchAsync<SearchDto>(string endpoint);
+        Task<MovieDetailsDto> GetMovieAsync<MovieDetailsDto>(string endpoint);  
 
     }
 }
