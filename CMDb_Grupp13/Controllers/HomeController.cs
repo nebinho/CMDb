@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web.Http;
 
 namespace CMDb_Grupp13.Controllers
 {
@@ -39,7 +40,6 @@ namespace CMDb_Grupp13.Controllers
                     movieList.Add(movie);
                 }
 
-
                 if (!String.IsNullOrEmpty(searchString))
                 {
                     var searchResult = await omdbRepo.GetSearchAsync(searchString);
@@ -62,7 +62,6 @@ namespace CMDb_Grupp13.Controllers
                 throw;
             }
         }
-
 
     }
 }

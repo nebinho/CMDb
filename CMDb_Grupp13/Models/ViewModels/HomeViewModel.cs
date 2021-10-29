@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web.Http;
 
 namespace CMDb_Grupp13.Models.ViewModels
 {
@@ -15,7 +16,6 @@ namespace CMDb_Grupp13.Models.ViewModels
         public List<TopListDto> TopList { get; set; }
         public string ImdbID { get; set; }
         public List<MovieDetailsDto> Movies { get; set; }
-
     }
 
 }
