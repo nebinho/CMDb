@@ -15,5 +15,7 @@ namespace CMDb_Grupp13.Models
         public string Plot { get; set; }
         public string Poster { get; set; }
 
+        public List<RatingsDto> Ratings { get; set; }
+
     }
 }

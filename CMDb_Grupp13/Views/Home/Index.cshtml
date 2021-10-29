@@ -27,30 +27,25 @@
         <div class="flex-picture-left">
             <h2>Toppfilmen just nu!</h2>
             <a href="img/photo1.jpg" target="_blank">
-                <img src="~/images/movietheater.jpg" alt="">
+                <img src="@Html.DisplayFor(model => model.Movies[0].Poster)"  alt="">
             </a>
-            <h2><a href="#"></a>Titel</h2>
-            <p>Lorem ipsum Lorem ipsum Lorem ipsum</p>
+            <h2><a href="#"></a>@Html.DisplayFor(model => model.Movies[0].Title), @Html.DisplayFor(model => model.Movies[0].Year) </h2>
+            <p>@Html.DisplayFor(model => model.Movies[0].Plot)</p>
             <button class="button-style">Läs mer</button>
 
         </div>
      
-
     </div>
     <div class="flexcontainer2">
-
+     
         <div class="flex-picture-left-bottom">
-
             <a href="" target="_blank">
                 @*<img src="" alt="">*@
             </a>
-
             <div>
                 <img src="~/images/imdb.png" />
             </div>
-            <h2>Rating 1</h2>
-
-            <p></p>
+            <h2>@Html.DisplayFor(model => model.Movies[0].Ratings[0].Value)</h2>
 
         </div>
         <div class="flex-picture-mid-bottom">
@@ -60,8 +55,7 @@
             </a>
 
             <img src="~/images/tomato.png" />
-            <h2>Rating 2</h2>
-            <p></p>
+            <h2>@Html.DisplayFor(model => model.Movies[0].Ratings[0].Value)</h2>
 
         </div>
         <div class="flex-picture-right-bottom">
@@ -71,8 +65,7 @@
             </a>
 
             <img src="~/images/meta.png" />
-            <h2>Rating 3</h2>
-            <p></p>
+            <h2>@Html.DisplayFor(model => model.Movies[0].Ratings[0].Value)</h2>
 
         </div>
     </div>
@@ -82,28 +75,28 @@
         <div class="flex-picture-left-bottom">
             <h2>#2</h2>
             <a href="~/images/movietheater.jpg" target="_blank">
-                <img src="~/images/movietheater.jpg" alt="">
+                <img src="@Html.DisplayFor(model => model.Movies[1].Poster)" alt="">
             </a>
-            <h2>Titel</h2>
-            <p>Lorem ipsum Lorem ipsum Lorem ipsum</p>
+            <h2>@Html.DisplayFor(model => model.Movies[1].Title), @Html.DisplayFor(model => model.Movies[1].Year)</h2>
+            <p>@Html.DisplayFor(model => model.Movies[1].Plot)</p>
             <button class="button-style">Läs mer</button>
         </div>
         <div class="flex-picture-mid-bottom">
             <h2>#3</h2>
             <a href="~/images/movietheater.jpg" target="_blank">
-                <img src="~/images/movietheater.jpg" alt="">
+                <img src="@Html.DisplayFor(model => model.Movies[2].Poster)" alt="">
             </a>
-            <h2>Titel</h2>
-            <p>Lorem ipsum Lorem ipsum Lorem ipsum</p>
+            <h2>@Html.DisplayFor(model => model.Movies[2].Title), @Html.DisplayFor(model => model.Movies[2].Year)</h2>
+            <p>@Html.DisplayFor(model => model.Movies[2].Plot)</p>
             <button class="button-style">Läs mer</button>
         </div>
         <div class="flex-picture-right-bottom">
             <h2>#4</h2>
             <a href="~/images/movietheater.jpg" target="_blank">
-                <img src="~/images/movietheater.jpg" alt="">
+                <img src="@Html.DisplayFor(model => model.Movies[3].Poster)" alt="">
             </a>
-            <h2>Titel</h2>
-            <p>Lorem ipsum Lorem ipsum Lorem ipsum</p>
+            <h2>@Html.DisplayFor(model => model.Movies[3].Title), @Html.DisplayFor(model => model.Movies[3].Year)</h2>
+            <p>@Html.DisplayFor(model => model.Movies[3].Plot)</p>
             <button class="button-style">Läs mer</button>
         </div>
     </div>
