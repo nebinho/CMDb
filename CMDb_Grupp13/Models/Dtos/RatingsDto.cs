@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace CMDb_Grupp13.Models
 {
-    public class MovieDto
+    public class RatingsDto
     {
-        public string Title { get; set; }
-        public string imdbID { get; set; }
+        public string Source { get; set; }
+        public string Value { get; set; }
     }
 }

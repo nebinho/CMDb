@@ -5,13 +5,12 @@ using System.Threading.Tasks;
 
 namespace CMDb_Grupp13.Models
 {
-    public class TopListDto
+    public class IndexDto
     {
         public string ImdbID { get; set; }
-        public int NumberOfLikes { get; set; }
-        public int NumberOfDislikes { get; set; }
-        public string TopMovies { get; set; }
         public string Title { get; set; }
-
+        public string PlotShort { get; set; }
+        public string PlotLong { get; set; }
+        public IEnumerable<RatingsDto> Ratings { get; set; }
     }
 }

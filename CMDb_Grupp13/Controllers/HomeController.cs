@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web.Http;
 
 namespace CMDb_Grupp13.Controllers
 {
@@ -27,8 +28,11 @@ namespace CMDb_Grupp13.Controllers
         {
             try
             {
-                var search = await omdbRepo.GetSearchAsync();
+                var search = await omdbRepo.GetSearchAsync("");
                 var topList = await cmdbRepo.GetTopListAsync();
+
+            
+              
 
                 var model = new HomeViewModel(topList, search);
 
@@ -44,5 +48,6 @@ namespace CMDb_Grupp13.Controllers
             }
         }
 
+       
     }
 }
