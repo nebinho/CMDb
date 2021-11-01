@@ -36,13 +36,19 @@ img {
     flex-direction: row;
     color: white;
     background-color: #a31f15;
-    padding: 10px;
+    padding: 40px;
     text-align: center;
     margin: auto;
 }
 
+.ratingImages {
+    width: 50px;
+    height: auto
+  
+}
 
-.flexcontainer, .flexcontainer3 {
+
+.flexcontainer3 {
     display: flex;
     flex-direction: row;
     text-align: center;
@@ -54,11 +60,14 @@ img {
 
 .flex-picture-left {
     background-color: #a31f15;
-    padding: 20px;
+    display: block;
+    padding: 70px;
+    text-align: center;
+    margin-right: 70px;
+    color: white;
+    text-align: center;
   
 }
-
-
 
 .flex-picture-left-bottom {
     background-color: #a31f15;
@@ -70,12 +79,57 @@ img {
     background-color: #a31f15;
     padding: 20px;
     flex: 33%;
+
 }
 
 .flex-picture-right-bottom {
     background-color: #a31f15;
     padding: 20px;
     flex: 33%;
+}
+
+.searchBar {
+    width: 35vw;
+     display: flex;
+    border-radius: 500px;
+    border: 2px solid black;
+    background: white;
+    padding: 20px;
+    margin-left: 450px;
+    justify-content: center;
+}
+
+.topMovies, .topMovie{
+    text-align: center;
+    color: white;
+    font-size: 30px;
+    padding: 30px;
+}
+
+.flexcontainer{
+    padding: 0;
+}
+
+
+
+.searchEntry{
+    text-align: center;
+}
+
+input[type="text"] {
+    flex-grow: 1;
+    text-align: left;
+    min-width: 150px;
+    border: 0;
+    outline: none;
+    font-size: 20px;
+}
+
+.button {
+    cursor: pointer;
+    border: 0;
+    background: transparent;
+   
 }
 
 @media only screen and (max-width: 1000px) {
@@ -86,12 +140,12 @@ img {
     }
 }
 
-    @media only screen and (max-width: 600px) {
-        .flexcontainer,
-        .flexcontainer2, .flexcontainer3 {
-            flex-direction: column;
-        }
+ @media only screen and (max-width: 600px) {
+    .flexcontainer,
+    .flexcontainer2, .flexcontainer3 {
+       flex-direction: column;
     }
+ }
 
 footer {
     padding: 50px;

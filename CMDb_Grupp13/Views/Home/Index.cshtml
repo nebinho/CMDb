@@ -8,11 +8,13 @@
 -->
 <html>
 <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Escape Velocity by HTML5 UP</title>
     <link rel="icon" href="~/images/popcorn_icon.ico">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link href="~/css/main.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/main.css"  />
+    <script src="~/js/site.js" type="module"></script>
 
 </head>
 <body>
@@ -22,28 +24,43 @@
         <div class="logo"></div>
     </header>
 
+    <section class="searchEntry">
+        <form id="searchBar" class="searchBar">
+            <label for="search"></label>
+            <input id="search" type="text" autocomplete="off" />
+            @*<div id="clear" class="none ButtonClear" role="button"
+                 tabindex="0" aria-label="Clear search terms" >
+                    x
+                </div>*@
+            <button id="searchButton" class="button searchButton"
+                    type="submit" aria-label="Submit button">
+                <i class="fas fa-search"></i>
+            </button>
+        </form>
+    </section>
+
 
     <div class="flexcontainer">
         <div class="flex-picture-left">
-            <h2>Toppfilmen just nu!</h2>
+            <h2 class="topMovie">Toppfilmen just nu!</h2>
             <a href="img/photo1.jpg" target="_blank">
-                <img src="@Html.DisplayFor(model => model.Movies[0].Poster)"  alt="">
+                <img src="@Html.DisplayFor(model => model.Movies[0].Poster)" alt="">
             </a>
             <h2><a href="#"></a>@Html.DisplayFor(model => model.Movies[0].Title), @Html.DisplayFor(model => model.Movies[0].Year) </h2>
             <p>@Html.DisplayFor(model => model.Movies[0].Plot)</p>
             <button class="button-style">Läs mer</button>
 
         </div>
-     
+
     </div>
     <div class="flexcontainer2">
-     
+
         <div class="flex-picture-left-bottom">
             <a href="" target="_blank">
                 @*<img src="" alt="">*@
             </a>
             <div>
-                <img src="~/images/imdb.png" />
+                <img class="ratingImages" src="~/images/imdb.png" />
             </div>
             <h2>@Html.DisplayFor(model => model.Movies[0].Ratings[0].Value)</h2>
 
@@ -54,7 +71,7 @@
                 @*<img src="" alt="">*@
             </a>
 
-            <img src="~/images/tomato.png" />
+            <img class="ratingImages" src="~/images/tomato.png" />
             <h2>@Html.DisplayFor(model => model.Movies[0].Ratings[0].Value)</h2>
 
         </div>
@@ -64,15 +81,16 @@
                 @*<img src="" alt="">*@
             </a>
 
-            <img src="~/images/meta.png" />
+            <img class="ratingImages" src="~/images/meta.png" />
             <h2>@Html.DisplayFor(model => model.Movies[0].Ratings[0].Value)</h2>
 
         </div>
     </div>
-
+    <h2 class="topMovies">Andra toppfilmer</h2>
     <div class="flexcontainer3">
 
         <div class="flex-picture-left-bottom">
+
             <h2>#2</h2>
             <a href="~/images/movietheater.jpg" target="_blank">
                 <img src="@Html.DisplayFor(model => model.Movies[1].Poster)" alt="">
