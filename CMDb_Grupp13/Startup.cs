@@ -27,7 +27,7 @@ namespace CMDb_Grupp13
         {
             services.AddScoped<IRepositoryCmdb, MockCmdbRepo>();
             services.AddScoped<IApiClientCmdb, ApiClientCmdb>();
-            services.AddScoped<IRepositoryOmdb, MockOmdbRepo>();
+            services.AddScoped<IRepositoryOmdb, OmdbRepo>();
             services.AddScoped<IApiClientOmdb, ApiClientOmdb>();
             services.AddControllersWithViews();
         }

@@ -11,11 +11,12 @@ namespace CMDb_Grupp13.Models.ViewModels
     public class HomeViewModel
     {
         public IEnumerable<MovieSearchDto> Search { get; set; }
-        public string SearchMovie { get; set; }
+        public string SearchString { get; set; }
         public string SelectedMovie { get; set; }
         public List<TopListDto> TopList { get; set; }
         public string ImdbID { get; set; }
         public List<MovieDetailsDto> Movies { get; set; }
+
     }
 
 }
