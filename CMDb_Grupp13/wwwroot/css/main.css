@@ -19,9 +19,12 @@ header {
     background: #2b2c30;
 }
 
-.button-style{
+.button-style {
     color: white;
     background-color: black;
+    font-size: 20px;
+    border-radius: 30px;
+
   
 }
 
@@ -66,26 +69,29 @@ img {
     margin-right: 70px;
     color: white;
     text-align: center;
-  
+    font-size: 15px;
 }
+
 
 .flex-picture-left-bottom {
     background-color: #a31f15;
     padding: 20px;
     flex: 33%;
+    font-size: 15px;
 }
 
 .flex-picture-mid-bottom {
     background-color: #a31f15;
     padding: 20px;
     flex: 33%;
-
+    font-size: 15px;
 }
 
 .flex-picture-right-bottom {
     background-color: #a31f15;
     padding: 20px;
     flex: 33%;
+    font-size: 15px;
 }
 
 .searchBar {
@@ -95,7 +101,7 @@ img {
     border: 2px solid black;
     background: white;
     padding: 20px;
-    margin-left: 450px;
+    margin-left: 600px;
     justify-content: center;
 }
 
@@ -108,6 +114,7 @@ img {
 
 .flexcontainer{
     padding: 0;
+    font-size: 15px;
 }
 
 
@@ -129,6 +136,8 @@ input[type="text"] {
     cursor: pointer;
     border: 0;
     background: transparent;
+    font-size: 20px;
+    border-radius: 50%;
    
 }
 

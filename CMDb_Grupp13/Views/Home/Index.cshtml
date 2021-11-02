@@ -1,11 +1,7 @@
 ﻿@model HomeViewModel
 
 <!DOCTYPE HTML>
-<!--
-    Escape Velocity by HTML5 UP
-    html5up.net |
-    Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
+
 <html>
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -13,11 +9,12 @@
     <link rel="icon" href="~/images/popcorn_icon.ico">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="~/css/main.css"  />
-    <script src="~/js/site.js" type="module"></script>
+    <link rel="stylesheet" href="~/css/main.css" />
 
 </head>
 <body>
+    <script src="~/js/site.js"></script>
+
     <header>
         <h2>CMDB</h2>
         <p><i>- för oss filmälskare</i></p>
@@ -27,7 +24,7 @@
     <section class="searchEntry">
         <form id="searchBar" class="searchBar">
             <label for="search"></label>
-            <input id="search" type="text" autocomplete="off" />
+            <input id="search" type="text" autocomplete="off" placeholder="Titel..." />
             @*<div id="clear" class="none ButtonClear" role="button"
                  tabindex="0" aria-label="Clear search terms" >
                     x
@@ -35,6 +32,7 @@
             <button id="searchButton" class="button searchButton"
                     type="submit" aria-label="Submit button">
                 <i class="fas fa-search"></i>
+
             </button>
         </form>
     </section>
@@ -47,8 +45,18 @@
                 <img src="@Html.DisplayFor(model => model.Movies[0].Poster)" alt="">
             </a>
             <h2><a href="#"></a>@Html.DisplayFor(model => model.Movies[0].Title), @Html.DisplayFor(model => model.Movies[0].Year) </h2>
-            <p>@Html.DisplayFor(model => model.Movies[0].Plot)</p>
-            <button class="button-style">Läs mer</button>
+            <h3>Likes: @Html.DisplayFor(model => model.TopList[0].numberOfLikes)</h3>
+            <h3>Dislikes: @Html.DisplayFor(model => model.TopList[0].numberOfDislikes)</h3>
+
+            <p id="shortPlot">@Model.Movies[0].Plot.Substring(0, 50). . . </p>
+            <button onclick="plotFunction()" class="button-style" id="textButton1">Läs mer</button>
+            <script>
+                function plotFunction() {
+                    document.getElementById("shortPlot").innerHTML = "@Model.Movies[0].Plot";
+                    var buttonText = document.getElementById("textButton2");
+                    buttonText.innerHTML = "Läs mindre";
+                }
+            </script>
 
         </div>
 
@@ -62,6 +70,7 @@
             <div>
                 <img class="ratingImages" src="~/images/imdb.png" />
             </div>
+            <p>@Html.DisplayFor(model => model.Movies[0].Ratings[0].Source)</p>
             <h2>@Html.DisplayFor(model => model.Movies[0].Ratings[0].Value)</h2>
 
         </div>
@@ -72,7 +81,18 @@
             </a>
 
             <img class="ratingImages" src="~/images/tomato.png" />
-            <h2>@Html.DisplayFor(model => model.Movies[0].Ratings[0].Value)</h2>
+
+            @if (Model.Movies[0].Ratings.Count == 3)
+            {
+                <p>@Html.DisplayFor(model => model.Movies[0].Ratings[1].Source)</p>
+                <h2>@Html.DisplayFor(model => model.Movies[0].Ratings[1].Value)</h2>
+
+            }
+            else
+            {
+                <h2>N/A</h2>
+            }
+
 
         </div>
         <div class="flex-picture-right-bottom">
@@ -82,7 +102,16 @@
             </a>
 
             <img class="ratingImages" src="~/images/meta.png" />
-            <h2>@Html.DisplayFor(model => model.Movies[0].Ratings[0].Value)</h2>
+            @if (Model.Movies[0].Ratings.Count == 3)
+            {
+                <p>@Html.DisplayFor(model => model.Movies[0].Ratings[2].Source)</p>
+                <h2>@Html.DisplayFor(model => model.Movies[0].Ratings[2].Value)</h2>
+
+            }
+            else
+            {
+                <h2>N/A</h2>
+            }
 
         </div>
     </div>
@@ -96,8 +125,19 @@
                 <img src="@Html.DisplayFor(model => model.Movies[1].Poster)" alt="">
             </a>
             <h2>@Html.DisplayFor(model => model.Movies[1].Title), @Html.DisplayFor(model => model.Movies[1].Year)</h2>
-            <p>@Html.DisplayFor(model => model.Movies[1].Plot)</p>
-            <button class="button-style">Läs mer</button>
+
+            <h3>Likes: @Html.DisplayFor(model => model.TopList[1].numberOfLikes)</h3>
+            <h3>Dislikes: @Html.DisplayFor(model => model.TopList[1].numberOfDislikes)</h3>
+
+            <p id="shortPlot1">@Model.Movies[1].Plot.Substring(0, 50). . . </p>
+            <button onclick="plotFunction1()" class="button-style" id="textButton2">Läs mer</button>
+            <script>
+                function plotFunction1() {
+                    document.getElementById("shortPlot1").innerHTML = "@Model.Movies[1].Plot";
+                    var buttonText = document.getElementById("textButton2");
+                    buttonText.innerHTML = "Läs mindre";
+                }
+            </script>
         </div>
         <div class="flex-picture-mid-bottom">
             <h2>#3</h2>
@@ -105,17 +145,39 @@
                 <img src="@Html.DisplayFor(model => model.Movies[2].Poster)" alt="">
             </a>
             <h2>@Html.DisplayFor(model => model.Movies[2].Title), @Html.DisplayFor(model => model.Movies[2].Year)</h2>
-            <p>@Html.DisplayFor(model => model.Movies[2].Plot)</p>
-            <button class="button-style">Läs mer</button>
+
+            <h3>Likes: @Html.DisplayFor(model => model.TopList[2].numberOfLikes)</h3>
+            <h3>Dislikes: @Html.DisplayFor(model => model.TopList[2].numberOfDislikes)</h3>
+
+            <p id="shortPlot2">@Model.Movies[2].Plot.Substring(0, 50) . . .</p>
+            <button onclick="plotFunction2()" class="button-style" id="textButton3">Läs mer</button>
+            <script>
+                function plotFunction2() {
+                    document.getElementById("shortPlot2").innerHTML = "@Model.Movies[2].Plot";
+                    var buttonText = document.getElementById("textButton3");
+                    buttonText.innerHTML = "Läs mindre";
+                }
+            </script>
         </div>
         <div class="flex-picture-right-bottom">
             <h2>#4</h2>
             <a href="~/images/movietheater.jpg" target="_blank">
                 <img src="@Html.DisplayFor(model => model.Movies[3].Poster)" alt="">
             </a>
-            <h2>@Html.DisplayFor(model => model.Movies[3].Title), @Html.DisplayFor(model => model.Movies[3].Year)</h2>
-            <p>@Html.DisplayFor(model => model.Movies[3].Plot)</p>
-            <button class="button-style">Läs mer</button>
+            <h2>@Html.DisplayFor(model => model.Movies[3].Title), @Html.DisplayFor(model => model.Movies[3].Year) </h2>
+
+            <h3>Likes: @Html.DisplayFor(model => model.TopList[3].numberOfLikes)</h3>
+            <h3>Dislikes: @Html.DisplayFor(model => model.TopList[3].numberOfDislikes)</h3>
+
+            <p id="shortPlot3">@Model.Movies[3].Plot.Substring(0, 50). . . </p>
+            <button onclick="plotFunction3()" class="button-style" id="textButton4">Läs mer</button>
+            <script>
+                function plotFunction3() {
+                    document.getElementById("shortPlot3").innerHTML = "@Model.Movies[3].Plot";
+                    var buttonText = document.getElementById("textButton4");
+                    buttonText.innerHTML = "Läs mindre";
+                }
+            </script>
         </div>
     </div>
 
@@ -126,4 +188,5 @@
 
 
 </body>
+
 </html>

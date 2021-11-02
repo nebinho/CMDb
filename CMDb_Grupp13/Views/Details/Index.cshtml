@@ -1,156 +1,147 @@
-﻿@model DetailsViewModel
+﻿@model HomeViewModel
 
 <!DOCTYPE HTML>
-<!--
-    Escape Velocity by HTML5 UP
-    html5up.net |
-    Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
+
 <html>
 <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Escape Velocity by HTML5 UP</title>
+    <link rel="icon" href="~/images/popcorn_icon.ico">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link href="~/css/details.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/details.css" />
+    <script src="~/js/site.js" type="module"></script>
+
 </head>
-<body class="homepage is-preload">
-    <div id="page-wrapper">
+<body>
+    <header>
+        <h2>CMDB</h2>
+        <p><i>- för oss filmälskare</i></p>
+        <div class="logo"></div>
+    </header>
 
-        <!-- Header -->
-        <section id="header" class="wrapper">
+    <div class="searchEntry">
+        <form id="searchBar" class="searchBar">
+            <label for="search"></label>
+            <input id="search" type="text" autocomplete="off" />
+            @*<div id="clear" class="none ButtonClear" role="button"
+                 tabindex="0" aria-label="Clear search terms" >
+                    x
+                </div>*@
+            <button id="searchButton" class="button searchButton"
+                    type="submit" aria-label="Submit button">
+                <i class="fas fa-search"></i>
 
-            <!-- Logo -->
-            <div id="logo">
-                <h1><a href="index.html">CMDB <i>- för oss filmälskare</i></a></h1>
-            
+            </button>
+        </form>
+    </div>
 
+
+    <div class="flexcontainer">
+        <div class="flex-picture-left">
+            <h2 class="topMovie">Titel, År</h2>
+            <a href="img/photo1.jpg" target="_blank">
+                <img src="~/images/movietheater.jpg" alt="">     @*@Html.DisplayFor(model => model.Movies[0].Poster)*@
+            </a>
+            <h2><a href="#"></a>@*@Html.DisplayFor(model => model.Movies[0].Title), @Html.DisplayFor(model => model.Movies[0].Year)*@ </h2>
+            <p>@*@Html.DisplayFor(model => model.Movies[0].Plot)*@</p>
+            <button id="likeButton" class="likeButton"
+                    type="submit" aria-label="Like button">
+                <i class="far fa-thumbs-up"></i>
+
+            </button>
+            @*<script>
+                function LikeMovie() {
+                    var counter = "@Model.TopList[0].numberOfLikes"
+                    document.getElementById("likeButton").innerHTML = "@Model.TopList[0].numberOfLikes";
+
+                    for (var i = 0; i < counter; i++) {
+                        counter++;
+                    }
+                }
+            </script>*@
+            <button id="dislikeButton" class="dislikeButton"
+                    type="submit" aria-label="Dislike button">
+                <i class="far fa-thumbs-down"></i>
+            </button>
+            @*<script>
+                function DislikeMovie() {
+
+                }
+
+            </script>*@
+        </div>
+
+
+    </div>
+    <div class="flexcontainer2">
+
+        <div class="flex-picture-left-bottom">
+            <a href="" target="_blank">
+                @*<img src="" alt="">*@
+            </a>
+            <div>
+                <img class="ratingImages" src="~/images/imdb.png" />
             </div>
-            <!-- Nav -->
-            <nav id="nav">
-                @*@Html.TextBoxFor(m => m.SearchMovie)<br><br> <button>Sök</button>
+            <h2>@*@Html.DisplayFor(model => model.Movies[0].Ratings[0].Value)*@</h2>
 
-                <p class="style2">
-                    @Html.DropDownListFor(x => x.SelectedMovie, new SelectList(Model.Search, "Value", "Text"))
-                </p>*@
-            </nav>
+        </div>
+        <div class="flex-picture-mid-bottom">
 
-        </section>
+            <a href="" target="_blank">
+                @*<img src="" alt="">*@
+            </a>
 
-        <!-- Intro -->
-        <section id="intro" class="wrapper style1">
-            <div class="title">Toppfilmen just nu</div>
-            <div class="container">
-                <p class="style1"></p>
+            <img class="ratingImages" src="~/images/tomato.png" />
+            <h2>@*@Html.DisplayFor(model => model.Movies[0].Ratings[0].Value)*@</h2>
 
-                <p class="style2">
-                @*<p>@Html.DisplayNameFor(model => model.ImdbID)</p>
-                <p>@Html.DisplayFor(model => model.ImdbID)</p>
-                <p>@Html.DisplayFor(model => model.NumberOfLikes)</p>
-                <p>@Html.DisplayFor(model => model.Title)</p>*@
+        </div>
+        <div class="flex-picture-right-bottom">
 
-                <section id="highlights" class="wrapper style2">
+            <a href="" target="_blank">
+                @*<img src="" alt="">*@
+            </a>
 
-                    <div class="container">
-                        <div class="row aln-center">
-                            <div class="col-4 col-12-medium">
-                                <section class="highlight">
-                                    <a href="#" class="image featured"><img src="images/pic02.jpg" alt="" /></a>
-                                    <h3><a href="#">Aliquam diam consequat</a></h3>
-                                    <p>Eget mattis at, laoreet vel amet sed velit aliquam diam ante, dolor aliquet sit amet vulputate mattis amet laoreet lorem.</p>
+            <img class="ratingImages" src="~/images/meta.png" />
+            <h2>@*@Html.DisplayFor(model => model.Movies[0].Ratings[0].Value)*@</h2>
 
-                                </section>
-                            </div>
-                            <div class="col-4 col-12-medium">
-                                <section class="highlight">
-                                    <a href="#" class="image featured"><img src="images/pic03.jpg" alt="" /></a>
-                                    <h3><a href="#">Nisl adipiscing sed lorem</a></h3>
-                                    <p>Eget mattis at, laoreet vel amet sed velit aliquam diam ante, dolor aliquet sit amet vulputate mattis amet laoreet lorem.</p>
+        </div>
 
-                                </section>
-                            </div>
-                            <div class="col-4 col-12-medium">
-                                <section class="highlight">
-                                    <a href="#" class="image featured"><img src="images/pic04.jpg" alt="" /></a>
-                                    <h3><a href="#">Mattis tempus lorem</a></h3>
-                                    <p>Eget mattis at, laoreet vel amet sed velit aliquam diam ante, dolor aliquet sit amet vulputate mattis amet laoreet lorem.</p>
-
-                                </section>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <p class="style3">
-
-                </p>
-
-            </div>
-        </section>
-
-        <!-- Highlights -->
-        <section id="highlights" class="wrapper style3">
-            <div class="title">Andra topfilmer</div>
-            <div class="container">
-                <div class="row aln-center">
-                    <div class="col-4 col-12-medium">
-                        <section class="highlight">
-                            <a href="#" class="image featured"><img src="images/movietheater.jpg" alt="" /></a>
-                            <h3><a href="#">Toppfilm 2</a></h3>
-                            <p>Eget mattis at, laoreet vel amet sed velit aliquam diam ante, dolor aliquet sit amet vulputate mattis amet laoreet lorem.</p>
-                            <ul class="actions">
-                                <li><a href="#" class="button style1">Läs mer</a></li>
-                            </ul>
-                        </section>
-                    </div>
-                    <div class="col-4 col-12-medium">
-                        <section class="highlight">
-                            <a href="#" class="image featured"><img src="images/movietheater.jpg" alt="" /></a>
-                            <h3><a href="#">Toppfilm 3</a></h3>
-                            <p>Eget mattis at, laoreet vel amet sed velit aliquam diam ante, dolor aliquet sit amet vulputate mattis amet laoreet lorem.</p>
-                            <ul class="actions">
-                                <li><a href="#" class="button style1">Läs mer</a></li>
-                            </ul>
-                        </section>
-                    </div>
-                    <div class="col-4 col-12-medium">
-                        <section class="highlight">
-                            <a href="#" class="image featured"><img src="images/movietheater.jpg" alt="" /></a>
-                            <h3><a href="#">Toppfilm 4</a></h3>
-                            <p>Eget mattis at, laoreet vel amet sed velit aliquam diam ante, dolor aliquet sit amet vulputate mattis amet laoreet lorem.</p>
-                            <ul class="actions">
-                                <li><a href="#" class="button style1">Läs mer</a></li>
-                            </ul>
-                        </section>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Footer -->
-        <section id="footer" class="wrapper">
-            <div class="title">The Rest Of It</div>
-            <div class="container">
-                <header class="style1">
-                </header>
-
-                <div id="copyright">
-                    <ul>
-                        <li>&copy;Copyright Apollo13.</li>
-                        <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-                    </ul>
-                </div>
-            </div>
-        </section>
 
     </div>
 
-    <!-- Scripts -->
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/jquery.dropotron.min.js"></script>
-    <script src="assets/js/browser.min.js"></script>
-    <script src="assets/js/breakpoints.min.js"></script>
-    <script src="assets/js/util.js"></script>
-    <script src="assets/js/main.js"></script>
+    <div class="flexcontainer3">
+        <div class="plot">
+            <h2>Handling</h2>
+            <p> Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum</p>
+
+        </div>
+
+        <div class="actors">
+            <h2>Skådespelare</h2>
+            <ul>
+                <li>
+                    Skådespelare 1
+                </li>
+                <li>
+                    Skådespelare 2
+                </li>
+                <li>
+                    Skådespelare 3
+                </li>
+
+            </ul>
+        </div> 
+
+    </div>
+
+ 
+
+    <footer>
+
+        <p>Copyright Apollo13</p>
+    </footer>
+
 
 </body>
 </html>

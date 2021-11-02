@@ -11,8 +11,9 @@ namespace CMDb_Grupp13.Repositories
     {
         private readonly IApiClientCmdb apiClient;
         private readonly string baseEndpoint = "http://www.omdbapi.com/?apikey=f97b092d&";
-        private readonly string searchEndpoint = "s=";
+        private readonly string searchEndpoint = "t=";
         private readonly string imdbIDEndpoint = "i=";
+        private readonly string plotFullEndpoint = "&plot=full";
 
         public OmdbRepo(IApiClientCmdb apiClient)
         {
@@ -21,6 +22,7 @@ namespace CMDb_Grupp13.Repositories
 
         public async Task<SearchDto> GetSearchAsync(string searchString) => await apiClient.GetAsync<SearchDto>($"{baseEndpoint}{searchEndpoint}{searchString}");
 
-        public async Task<MovieDetailsDto> GetMovieAsync(string imdbID) => await apiClient.GetAsync<MovieDetailsDto>($"{baseEndpoint}{imdbIDEndpoint}{imdbID}");
+        public async Task<MovieDetailsDto> GetMovieAsync(string imdbID) => await apiClient.GetAsync<MovieDetailsDto>($"{baseEndpoint}{imdbIDEndpoint}{imdbID}{plotFullEndpoint}");
+        //public async Task<MovieDetailsDto> GetFullPlotAsync(string plotFull) => await apiClient.GetAsync<MovieDetailsDto>($"{baseEndpoint}{plotFullEndpoint}{plotFull}");
     }
 }
