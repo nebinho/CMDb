@@ -1,7 +1,6 @@
 ﻿@model HomeViewModel
 
 <!DOCTYPE HTML>
-
 <html>
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -10,31 +9,55 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="~/css/main.css" />
+    <script src="~/js/site.js"></script>
 
 </head>
 <body>
-    <script src="~/js/site.js"></script>
-
     <header>
         <h2>CMDB</h2>
         <p><i>- för oss filmälskare</i></p>
         <div class="logo"></div>
     </header>
 
+
+
+
     <section class="searchEntry">
-        <form id="searchBar" class="searchBar">
+        <form id="searchBar" class="searchBar" asp-action="Search" asp-controller="Home" method="get">
             <label for="search"></label>
-            <input id="search" type="text" autocomplete="off" placeholder="Titel..." />
-            @*<div id="clear" class="none ButtonClear" role="button"
-                 tabindex="0" aria-label="Clear search terms" >
-                    x
-                </div>*@
-            <button id="searchButton" class="button searchButton"
-                    type="submit" aria-label="Submit button">
+            <input type="text" name="searchString" autocomplete="off" placeholder="Sök film" />
+            <button type="submit" id="searchButton" class="button searchButton">
                 <i class="fas fa-search"></i>
 
             </button>
+            <p>
+                @if (Model.Search != null)
+                {
+
+                        @Html.DropDownListFor(x => x.SelectedMovie, new SelectList(Model.Search, "Value", "Text"), "Välj film")
+
+                }
+            </p>
         </form>
+        @*<div id="searchResults">
+            <table>
+                <tr>
+                    <th>Title</th>
+                </tr>
+                @if (Model.Search != null)
+                {
+                    @foreach (var movie in Model.Search)
+                    {
+                        <tr>
+                            <td>@movie.Title</td>
+                        </tr>
+                    }
+                }
+            </table>
+        </div>*@
+    </section>
+
+    <section class="results">
     </section>
 
 
