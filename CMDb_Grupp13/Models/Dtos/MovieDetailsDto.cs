@@ -9,7 +9,7 @@ namespace CMDb_Grupp13.Models
     {
         public string imdbID { get; set; }
         public string Title { get; set; }
-        public int Year { get; set; }
+        public string Year { get; set; }
         public string Director { get; set; }
         public string Actors { get; set; }
         public string Plot { get; set; }

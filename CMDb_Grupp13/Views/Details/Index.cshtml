@@ -1,4 +1,4 @@
-﻿@model HomeViewModel
+﻿@model DetailsViewModel
 
 <!DOCTYPE HTML>
 
@@ -20,56 +20,50 @@
         <div class="logo"></div>
     </header>
 
-    <div class="searchEntry">
+    <!--<div class="searchEntry">
         <form id="searchBar" class="searchBar">
             <label for="search"></label>
-            <input id="search" type="text" autocomplete="off" />
+            <input id="search" type="text" autocomplete="off" />-->
             @*<div id="clear" class="none ButtonClear" role="button"
                  tabindex="0" aria-label="Clear search terms" >
                     x
                 </div>*@
-            <button id="searchButton" class="button searchButton"
+            <!--<button id="searchButton" class="button searchButton"
                     type="submit" aria-label="Submit button">
                 <i class="fas fa-search"></i>
 
             </button>
         </form>
-    </div>
+    </div>-->
 
 
     <div class="flexcontainer">
         <div class="flex-picture-left">
-            <h2 class="topMovie">Titel, År</h2>
+            <h2 class="topMovie">@Html.DisplayFor(model => model.Movie.Title), @Html.DisplayFor(model => model.Movie.Year)</h2>
             <a href="img/photo1.jpg" target="_blank">
-                <img src="~/images/movietheater.jpg" alt="">     @*@Html.DisplayFor(model => model.Movies[0].Poster)*@
+                <img src=@Html.DisplayFor(model => model.Movie.Poster) alt="">
             </a>
-            <h2><a href="#"></a>@*@Html.DisplayFor(model => model.Movies[0].Title), @Html.DisplayFor(model => model.Movies[0].Year)*@ </h2>
+            <h2><a href="#"></a> </h2>
+            @*<h3>Likes: @Html.DisplayFor(model => model.Movie.Toplist.numberOfLikes)</h3>
+            <h3>Dislikes: @Html.DisplayFor(model => model.TopList[0].numberOfDislikes)</h3>*@
             <p>@*@Html.DisplayFor(model => model.Movies[0].Plot)*@</p>
             <button id="likeButton" class="likeButton"
                     type="submit" aria-label="Like button">
                 <i class="far fa-thumbs-up"></i>
 
             </button>
-            @*<script>
-                function LikeMovie() {
-                    var counter = "@Model.TopList[0].numberOfLikes"
-                    document.getElementById("likeButton").innerHTML = "@Model.TopList[0].numberOfLikes";
 
-                    for (var i = 0; i < counter; i++) {
-                        counter++;
-                    }
-                }
-            </script>*@
             <button id="dislikeButton" class="dislikeButton"
                     type="submit" aria-label="Dislike button">
                 <i class="far fa-thumbs-down"></i>
             </button>
+
             @*<script>
-                function DislikeMovie() {
+            function DislikeMovie() {
 
-                }
+            }
 
-            </script>*@
+        </script>*@
         </div>
 
 
@@ -83,17 +77,17 @@
             <div>
                 <img class="ratingImages" src="~/images/imdb.png" />
             </div>
-            <h2>@*@Html.DisplayFor(model => model.Movies[0].Ratings[0].Value)*@</h2>
+            <h2>@Html.DisplayFor(model => model.Movie.Ratings[0].Value)</h2>
 
         </div>
         <div class="flex-picture-mid-bottom">
 
             <a href="" target="_blank">
-                @*<img src="" alt="">*@
+                <img src="" alt="">
             </a>
 
             <img class="ratingImages" src="~/images/tomato.png" />
-            <h2>@*@Html.DisplayFor(model => model.Movies[0].Ratings[0].Value)*@</h2>
+            <h2>@Html.DisplayFor(model => model.Movie.Ratings[1].Value)</h2>
 
         </div>
         <div class="flex-picture-right-bottom">
@@ -103,7 +97,7 @@
             </a>
 
             <img class="ratingImages" src="~/images/meta.png" />
-            <h2>@*@Html.DisplayFor(model => model.Movies[0].Ratings[0].Value)*@</h2>
+            <h2>@Html.DisplayFor(model => model.Movie.Ratings[2].Value)</h2>
 
         </div>
 
@@ -113,25 +107,19 @@
     <div class="flexcontainer3">
         <div class="plot">
             <h2>Handling</h2>
-            <p> Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum</p>
+            <p>@Html.DisplayFor(model => model.Movie.Plot)</p>
 
         </div>
 
         <div class="actors">
             <h2>Skådespelare</h2>
-            <ul>
-                <li>
-                    Skådespelare 1
-                </li>
-                <li>
-                    Skådespelare 2
-                </li>
-                <li>
-                    Skådespelare 3
-                </li>
+            <p>@Html.DisplayFor(model => model.Movie.Actors)</p>
+        </div>
 
-            </ul>
-        </div> 
+        <div class="director">
+            <h2>Regissör</h2>
+            <p>@Html.DisplayFor(model => model.Movie.Director)</p>
+        </div>
 
     </div>
 
