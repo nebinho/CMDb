@@ -19,71 +19,10 @@
         <div class="logo"></div>
     </header>
 
-    @*<div class="dropdown">
-            <button type="submit" id="searchButton" asp-action="Search" asp-controller="Home" onclick="getDropdown()" class="button searchButton">
-                <i class="fas fa-search"></i>
-            </button>
-            <input type="text" name="searchinput" id="searchinput" autocomplete="off" onkeyup="filterFunction()" placeholder="Sök film" />
-
-            <div id="searchDropdown" class="dropdown-content">
-
-                @if (Model.Search != null)
-                {
-                    @foreach (var movie in Model.Search)
-                    {
-                        <a href="#about">@movie.Title</a>
-
-                    }
-                }
-
-                <script>
-                    function getDropdown() {
-                        document.getElementById('searchDropdown').classList.toggle('show')
-                    }
-
-                    function filterFunction() {
-                        const input, filter, ul, li, a, i;
-                        input = document.getElementById("searchinput");
-                        filter = input.value.toUpperCase();
-                        div = document.getElementById("searchDropdown");
-                        a = div.getElementsByTagName("a");
-                        for (i = 0; i < a.length; i++) {
-                            txtValue = a[i].textContent || a[i].innerText;
-                            if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                                a[i].style.display = "";
-                            } else {
-                                a[i].style.display = "none";
-                            }
-                        }
-
-                    }
-                </script>
-            </div>
-        </div>*@
-
-    @*<form id="searchBar" class="searchBar" asp-action="Search" asp-controller="Home" method="get">
-        <label for="search"></label>
-        <input type="text" name="searchinput" id="searchinput" autocomplete="off" onkeyup="filterFunction()" placeholder="Sök film" />
-        <button type="submit" id="searchButton" onclick="getDropdown()" class="button searchButton">
-            <i class="fas fa-search"></i>
-        </button>
-        <div id="searchDropdown" class="dropdown-content">
-            @if (Model.Search != null)
-            {
-                @foreach (var movie in Model.Search)
-                {
-                    <a href="#about">@movie.Title</a>
-
-                }
-            }
-            </div>
-        </form>*@
 
 <div class="dropdown">
-    @*<button onclick="myFunction()" class="dropbtn">Dropdown</button>*@
-    @*<input type="text" placeholder="Search.." id="myInput" onkeypress="myFunction()">*@
     <form id="searchBar" class="searchBar" asp-action="Search" asp-controller="Home" method="get">
-        <input type="text" name="searchinput" autocomplete="off" placeholder="Sök film" />
+        <input type="text" name="searchinput" autocomplete="off" placeholder="Sök film..." />
         <button type="submit" id="searchButton" onsubmit="myFunction()" class="button searchButton"></button>
     </form>
     <div id="myDropdown" class="dropdown-content">
@@ -91,8 +30,9 @@
         {
             @foreach (var movie in Model.SearchDetails)
             {
-                <a href="@movie.imdbID"><img src="@movie.Poster" /> @movie.Title , @movie.Year </a>
-
+                <form asp-action="Index" asp-controller="Details" method="get">
+                   <a href="@Url.Action("Index", "Details", new {imdbID = movie.imdbID })"><img src="@movie.Poster" /> @movie.Title , @movie.Year </a>
+                </form>
             }
         }
     </div>
@@ -119,7 +59,7 @@
             <script>
                 function plotFunction() {
                     document.getElementById("shortPlot").innerHTML = "@Model.Movies[0].Plot";
-                    var buttonText = document.getElementById("textButton2");
+                    var buttonText = document.getElementById("textButton1");
                     buttonText.innerHTML = "Läs mindre";
                 }
             </script>

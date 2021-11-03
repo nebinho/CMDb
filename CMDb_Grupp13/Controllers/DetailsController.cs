@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using CMDb_Grupp13.Models.ViewModels;
+using CMDb_Grupp13.Repositories;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +10,27 @@ namespace CMDb_Grupp13.Controllers
 {
     public class DetailsController : Controller
     {
-        public IActionResult Index()
+        private IRepositoryCmdb cmdbRepo;
+        private IRepositoryOmdb omdbRepo;
+
+
+        public DetailsController(IRepositoryCmdb cmdbRepo, IRepositoryOmdb omdbRepo)
         {
-            return View();
+            this.cmdbRepo = cmdbRepo;
+            this.omdbRepo = omdbRepo;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Index(string imdbID)
+        {
+            var movie = await omdbRepo.GetMovieAsync(imdbID);
+
+            var model = new DetailsViewModel
+            {
+                Movie = movie
+            };
+
+            return View(model);
         }
     }
 }

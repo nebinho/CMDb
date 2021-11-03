@@ -7,5 +7,7 @@ namespace CMDb_Grupp13.Models.ViewModels
 {
     public class DetailsViewModel
     {
+        public MovieDetailsDto Movie { get; set; }
+       
     }
 }

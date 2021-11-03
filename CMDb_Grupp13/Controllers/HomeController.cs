@@ -26,10 +26,8 @@ namespace CMDb_Grupp13.Controllers
         {
             try
             {
-                
                 var topList = await cmdbRepo.GetTopListAsync();
 
-                
                 List<MovieDetailsDto> movieList = new List<MovieDetailsDto>();
 
                 foreach (var m in topList)
@@ -48,7 +46,6 @@ namespace CMDb_Grupp13.Controllers
             }
             catch (Exception)
             {
-                //var model = new HomeViewModel();
                 ModelState.AddModelError(string.Empty, "Kunde inte få kontakt med API:t");
                 return View();
                 throw;
@@ -58,35 +55,53 @@ namespace CMDb_Grupp13.Controllers
         [HttpGet]
         public async Task<IActionResult> Search(string searchinput)
         {
-            var topList = await cmdbRepo.GetTopListAsync();
 
-            List<MovieDetailsDto> movieList = new List<MovieDetailsDto>();
-
-            foreach (var m in topList)
+            try
             {
-                var movie = await omdbRepo.GetMovieAsync(m.ImdbID);
-                movieList.Add(movie);
+                var topList = await cmdbRepo.GetTopListAsync();
+
+                List<MovieDetailsDto> movieList = new List<MovieDetailsDto>();
+
+                foreach (var m in topList)
+                {
+                    var movie = await omdbRepo.GetMovieAsync(m.ImdbID);
+                    movieList.Add(movie);
+                }
+
+                var searchResult = await omdbRepo.GetSearchAsync(searchinput);
+
+                List<MovieDetailsDto> searchList = new List<MovieDetailsDto>();
+
+                if (searchResult.Search == null)
+                {
+                    return View();
+                }
+                foreach (var m in searchResult.Search)
+                {
+                    var movie = await omdbRepo.GetMovieAsync(m.imdbID);
+                    searchList.Add(movie);
+
+                }
+
+                var model = new HomeViewModel
+                {
+                    TopList = topList.ToList(),
+                    Movies = movieList,
+                    Search = searchResult.Search,
+                    SearchDetails = searchList
+                };
+
+                return View("index", model);
             }
 
-            var searchResult = await omdbRepo.GetSearchAsync(searchinput);
-
-            List<MovieDetailsDto> searchList = new List<MovieDetailsDto>();
-
-            foreach (var m in searchResult.Search)
+            catch (Exception)
             {
-                var movie = await omdbRepo.GetMovieAsync(m.imdbID);
-                searchList.Add(movie);
+                ModelState.AddModelError(string.Empty, "Hittade inte filmen du sökte efter, prova gärna med en annan");
+                return View();
+                throw;
+                
             }
-
-            var model = new HomeViewModel
-            {
-                TopList = topList.ToList(),
-                Movies = movieList,
-                Search = searchResult.Search,
-                SearchDetails = searchList
-            };
-
-            return View("index", model);
+            
 
         }
 
