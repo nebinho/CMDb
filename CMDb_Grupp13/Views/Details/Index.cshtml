@@ -20,23 +20,6 @@
         <div class="logo"></div>
     </header>
 
-    <!--<div class="searchEntry">
-        <form id="searchBar" class="searchBar">
-            <label for="search"></label>
-            <input id="search" type="text" autocomplete="off" />-->
-            @*<div id="clear" class="none ButtonClear" role="button"
-                 tabindex="0" aria-label="Clear search terms" >
-                    x
-                </div>*@
-            <!--<button id="searchButton" class="button searchButton"
-                    type="submit" aria-label="Submit button">
-                <i class="fas fa-search"></i>
-
-            </button>
-        </form>
-    </div>-->
-
-
     <div class="flexcontainer">
         <div class="flex-picture-left">
             <h2 class="topMovie">@Html.DisplayFor(model => model.Movie.Title), @Html.DisplayFor(model => model.Movie.Year)</h2>
@@ -58,51 +41,43 @@
                 <i class="far fa-thumbs-down"></i>
             </button>
 
-            @*<script>
-            function DislikeMovie() {
-
-            }
-
-        </script>*@
         </div>
-
 
     </div>
     <div class="flexcontainer2">
 
-        <div class="flex-picture-left-bottom">
-            <a href="" target="_blank">
-                @*<img src="" alt="">*@
-            </a>
-            <div>
-                <img class="ratingImages" src="~/images/imdb.png" />
-            </div>
-            <h2>@Html.DisplayFor(model => model.Movie.Ratings[0].Value)</h2>
+        @for (int i = 0; i < Model.Movie.Ratings.Count; i++)
+        {
+            if (Model.Movie.Ratings[i].Source == "Internet Movie Database")
+            {
+                <div class="flex-picture-left-bottom">
+                    <img class="ratingImages" src="~/images/imdb.png" />
+
+                    <p>@Html.DisplayFor(model => model.Movie.Ratings[i].Source)</p>
+                    <h2>@Html.DisplayFor(model => model.Movie.Ratings[i].Value)</h2>
+                </div>
+            }
+            if (Model.Movie.Ratings[i].Source == "Rotten Tomatoes")
+            {
+                 <div class="flex-picture-mid-bottom">
+                   <img class="ratingImages" src="~/images/tomato.png" />
+
+                     <p>@Html.DisplayFor(model => model.Movie.Ratings[i].Source)</p>
+                     <h2>@Html.DisplayFor(model => model.Movie.Ratings[i].Value)</h2>
+               </div>
+            }
+            if (Model.Movie.Ratings[i].Source == "Metacritic")
+            {
+                    <div class="flex-picture-right-bottom">
+                       <img class="ratingImages" src="~/images/meta.png" />
+
+                        <p>@Html.DisplayFor(model => model.Movie.Ratings[i].Source)</p>
+                        <h2>@Html.DisplayFor(model => model.Movie.Ratings[i].Value)</h2>
+                  </div>
+            }
+        }
 
         </div>
-        <div class="flex-picture-mid-bottom">
-
-            <a href="" target="_blank">
-                <img src="" alt="">
-            </a>
-
-            <img class="ratingImages" src="~/images/tomato.png" />
-            <h2>@Html.DisplayFor(model => model.Movie.Ratings[1].Value)</h2>
-
-        </div>
-        <div class="flex-picture-right-bottom">
-
-            <a href="" target="_blank">
-                @*<img src="" alt="">*@
-            </a>
-
-            <img class="ratingImages" src="~/images/meta.png" />
-            <h2>@Html.DisplayFor(model => model.Movie.Ratings[2].Value)</h2>
-
-        </div>
-
-
-    </div>
 
     <div class="flexcontainer3">
         <div class="plot">
@@ -123,7 +98,6 @@
 
     </div>
 
- 
 
     <footer>
 
