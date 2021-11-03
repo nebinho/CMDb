@@ -128,58 +128,36 @@
 
     </div>
     <div class="flexcontainer2">
-
-        <div class="flex-picture-left-bottom">
-            <a href="" target="_blank">
-                @*<img src="" alt="">*@
-            </a>
-            <div>
-                <img class="ratingImages" src="~/images/imdb.png" />
-            </div>
-            <p>@Html.DisplayFor(model => model.Movies[0].Ratings[0].Source)</p>
-            <h2>@Html.DisplayFor(model => model.Movies[0].Ratings[0].Value)</h2>
-
-        </div>
-        <div class="flex-picture-mid-bottom">
-
-            <a href="" target="_blank">
-                @*<img src="" alt="">*@
-            </a>
-
-            <img class="ratingImages" src="~/images/tomato.png" />
-
-            @if (Model.Movies[0].Ratings.Count == 3)
+        @for (int i = 0; i < Model.Movies[i].Ratings.Count; i++)
+        {
+            if (Model.Movies[i].Ratings[i].Source == "Internet Movie Database")
             {
-                <p>@Html.DisplayFor(model => model.Movies[0].Ratings[1].Source)</p>
-                <h2>@Html.DisplayFor(model => model.Movies[0].Ratings[1].Value)</h2>
+                <div class="flex-picture-left-bottom">
+                    <img class="ratingImages" src="~/images/imdb.png" />
 
+                    <p>@Html.DisplayFor(model => model.Movies[i].Ratings[i].Source)</p>
+                    <h2>@Html.DisplayFor(model => model.Movies[i].Ratings[i].Value)</h2>
+                </div>
             }
-            else
+            if (Model.Movies[i].Ratings[i].Source == "Rotten Tomatoes")
             {
-                <h2>N/A</h2>
+                <div class="flex-picture-mid-bottom">
+                    <img class="ratingImages" src="~/images/tomato.png" />
+
+                    <p>@Html.DisplayFor(model => model.Movies[i].Ratings[i].Source)</p>
+                    <h2>@Html.DisplayFor(model => model.Movies[i].Ratings[i].Value)</h2>
+                </div>
             }
-
-
-        </div>
-        <div class="flex-picture-right-bottom">
-
-            <a href="" target="_blank">
-                @*<img src="" alt="">*@
-            </a>
-
-            <img class="ratingImages" src="~/images/meta.png" />
-            @if (Model.Movies[0].Ratings.Count == 3)
+            if (Model.Movies[i].Ratings[i].Source == "Metacritic")
             {
-                <p>@Html.DisplayFor(model => model.Movies[0].Ratings[2].Source)</p>
-                <h2>@Html.DisplayFor(model => model.Movies[0].Ratings[2].Value)</h2>
+                <div class="flex-picture-right-bottom">
+                    <img class="ratingImages" src="~/images/meta.png" />
 
+                    <p>@Html.DisplayFor(model => model.Movies[i].Ratings[i].Source)</p>
+                    <h2>@Html.DisplayFor(model => model.Movies[i].Ratings[i].Value)</h2>
+                </div>
             }
-            else
-            {
-                <h2>N/A</h2>
-            }
-
-        </div>
+        }
     </div>
     <h2 class="topMovies">Andra toppfilmer</h2>
     <div class="flexcontainer3">
