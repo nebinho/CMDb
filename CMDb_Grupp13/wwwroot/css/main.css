@@ -19,6 +19,10 @@ header {
     background: #2b2c30;
 }
 
+header a{
+    text-decoration: none;
+}
+
 .button-style {
     color: white;
     background-color: black;
