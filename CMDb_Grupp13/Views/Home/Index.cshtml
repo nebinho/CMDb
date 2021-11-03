@@ -19,46 +19,89 @@
         <div class="logo"></div>
     </header>
 
-
-
-
-    <section class="searchEntry">
-        <form id="searchBar" class="searchBar" asp-action="Search" asp-controller="Home" method="get">
-            <label for="search"></label>
-            <input type="text" name="searchString" autocomplete="off" placeholder="Sök film" />
-            <button type="submit" id="searchButton" class="button searchButton">
+    @*<div class="dropdown">
+            <button type="submit" id="searchButton" asp-action="Search" asp-controller="Home" onclick="getDropdown()" class="button searchButton">
                 <i class="fas fa-search"></i>
-
             </button>
-            <p>
-                @if (Model.Search != null)
-                {
+            <input type="text" name="searchinput" id="searchinput" autocomplete="off" onkeyup="filterFunction()" placeholder="Sök film" />
 
-                        @Html.DropDownListFor(x => x.SelectedMovie, new SelectList(Model.Search, "Value", "Text"), "Välj film")
+            <div id="searchDropdown" class="dropdown-content">
 
-                }
-            </p>
-        </form>
-        @*<div id="searchResults">
-            <table>
-                <tr>
-                    <th>Title</th>
-                </tr>
                 @if (Model.Search != null)
                 {
                     @foreach (var movie in Model.Search)
                     {
-                        <tr>
-                            <td>@movie.Title</td>
-                        </tr>
+                        <a href="#about">@movie.Title</a>
+
                     }
                 }
-            </table>
-        </div>*@
-    </section>
 
-    <section class="results">
-    </section>
+                <script>
+                    function getDropdown() {
+                        document.getElementById('searchDropdown').classList.toggle('show')
+                    }
+
+                    function filterFunction() {
+                        const input, filter, ul, li, a, i;
+                        input = document.getElementById("searchinput");
+                        filter = input.value.toUpperCase();
+                        div = document.getElementById("searchDropdown");
+                        a = div.getElementsByTagName("a");
+                        for (i = 0; i < a.length; i++) {
+                            txtValue = a[i].textContent || a[i].innerText;
+                            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                                a[i].style.display = "";
+                            } else {
+                                a[i].style.display = "none";
+                            }
+                        }
+
+                    }
+                </script>
+            </div>
+        </div>*@
+
+    @*<form id="searchBar" class="searchBar" asp-action="Search" asp-controller="Home" method="get">
+        <label for="search"></label>
+        <input type="text" name="searchinput" id="searchinput" autocomplete="off" onkeyup="filterFunction()" placeholder="Sök film" />
+        <button type="submit" id="searchButton" onclick="getDropdown()" class="button searchButton">
+            <i class="fas fa-search"></i>
+        </button>
+        <div id="searchDropdown" class="dropdown-content">
+            @if (Model.Search != null)
+            {
+                @foreach (var movie in Model.Search)
+                {
+                    <a href="#about">@movie.Title</a>
+
+                }
+            }
+            </div>
+        </form>*@
+
+<div class="dropdown">
+    @*<button onclick="myFunction()" class="dropbtn">Dropdown</button>*@
+    @*<input type="text" placeholder="Search.." id="myInput" onkeypress="myFunction()">*@
+    <form id="searchBar" class="searchBar" asp-action="Search" asp-controller="Home" method="get">
+        <input type="text" name="searchinput" autocomplete="off" placeholder="Sök film" />
+        <button type="submit" id="searchButton" onsubmit="myFunction()" class="button searchButton"></button>
+    </form>
+    <div id="myDropdown" class="dropdown-content">
+        @if (Model.Search != null)
+        {
+            @foreach (var movie in Model.SearchDetails)
+            {
+                <a href="@movie.imdbID"><img src="@movie.Poster" /> @movie.Title , @movie.Year </a>
+
+            }
+        }
+    </div>
+    <script>
+        function myFunction() {
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
+    </script>
+</div>
 
 
     <div class="flexcontainer">

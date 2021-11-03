@@ -16,6 +16,7 @@ namespace CMDb_Grupp13.Models.ViewModels
         public List<TopListDto> TopList { get; set; }
         public string ImdbID { get; set; }
         public List<MovieDetailsDto> Movies { get; set; }
+        public List<MovieDetailsDto> SearchDetails { get; set; }
 
     }
 

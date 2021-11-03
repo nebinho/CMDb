@@ -11,7 +11,7 @@ namespace CMDb_Grupp13.Repositories
     {
         private readonly IApiClientCmdb apiClient;
         private readonly string baseEndpoint = "http://www.omdbapi.com/?apikey=f97b092d&";
-        private readonly string searchEndpoint = "t=";
+        private readonly string searchEndpoint = "s=";
         private readonly string imdbIDEndpoint = "i=";
         private readonly string plotFullEndpoint = "&plot=full";
 
