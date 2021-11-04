@@ -37,10 +37,13 @@ namespace CMDb_Grupp13.Controllers
         public async Task<IActionResult> LikeDislike(string imdbID, string action)
         {
 
-                var like = await cmdbRepo.GetLikeDislikeAsync(imdbID, action);
-                var movie = await cmdbRepo.GetSingleMovieAsync(imdbID);
+            var like = await cmdbRepo.GetLikeDislikeAsync(imdbID, action);
+            var model = new DetailsViewModel
+            {
+                Info = like
+            };
 
-            return View();
+            return View(model);
         }
     }
 }

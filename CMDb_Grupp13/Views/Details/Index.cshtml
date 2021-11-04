@@ -9,7 +9,7 @@
     <link rel="icon" href="~/images/popcorn_icon.ico">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="~/css/details.css" />
+    <link rel="stylesheet" href="~/css/details.css?v={random string}" />
     <script src="~/js/site.js" type="module"></script>
 
 </head>
@@ -28,24 +28,33 @@
             </a>
             <h2><a href="#"></a> </h2>
             @*<h3>Likes: @Html.DisplayFor(model => model.Movie.Toplist.numberOfLikes)</h3>
-            <h3>Dislikes: @Html.DisplayFor(model => model.TopList[0].numberOfDislikes)</h3>*@
+                <h3>Dislikes: @Html.DisplayFor(model => model.TopList[0].numberOfDislikes)</h3>*@
             <p>@*@Html.DisplayFor(model => model.Movies[0].Plot)*@</p>
-            <button id="likeButton" class="likeButton"
-                    type="submit" aria-label="Like button">
-                <i class="far fa-thumbs-up"></i>
+            @*<button id="likeButton" class="likeButton"
+                        type="submit" aria-label="Like button">
+                    <i class="far fa-thumbs-up"></i>
 
-            </button>
+                </button>
 
-            <button id="dislikeButton" class="dislikeButton"
-                    type="submit" aria-label="Dislike button">
-                <i class="far fa-thumbs-down"></i>
-            </button>
+                <button id="dislikeButton" class="dislikeButton"
+                        type="submit" aria-label="Dislike button">
+                    <i class="far fa-thumbs-down"></i>
+                </button>*@
 
         </div>
-
-
-
     </div>
+
+    <form id="likesdislikes" asp-action="LikeDislike" method="get" data-ajax="true" data-ajax-method="get" data-ajax-update="#panel" data-ajax-mode='replace' data-ajax-url="@Url.Action("LikeDislike","Details", new {imdbID = Model.Movie.imdbID, action = "like" })">
+        <label>Likes:</label>
+        <input type="button" name="likebtn" value="black" />
+        <br />
+        <p></p>
+        <label>Dislikes:</label>
+        <input type="button" name="dislikebtn" value="A" />
+    </form>
+
+
+
     <div class="flexcontainer2">
 
         @for (int i = 0; i < Model.Movie.Ratings.Count; i++)
@@ -61,25 +70,25 @@
             }
             if (Model.Movie.Ratings[i].Source == "Rotten Tomatoes")
             {
-                 <div class="flex-picture-mid-bottom">
-                   <img class="ratingImages" src="~/images/tomato.png" />
+                <div class="flex-picture-mid-bottom">
+                    <img class="ratingImages" src="~/images/tomato.png" />
 
-                     <p>@Html.DisplayFor(model => model.Movie.Ratings[i].Source)</p>
-                     <h2>@Html.DisplayFor(model => model.Movie.Ratings[i].Value)</h2>
-               </div>
+                    <p>@Html.DisplayFor(model => model.Movie.Ratings[i].Source)</p>
+                    <h2>@Html.DisplayFor(model => model.Movie.Ratings[i].Value)</h2>
+                </div>
             }
             if (Model.Movie.Ratings[i].Source == "Metacritic")
             {
-                    <div class="flex-picture-right-bottom">
-                       <img class="ratingImages" src="~/images/meta.png" />
+                <div class="flex-picture-right-bottom">
+                    <img class="ratingImages" src="~/images/meta.png" />
 
-                        <p>@Html.DisplayFor(model => model.Movie.Ratings[i].Source)</p>
-                        <h2>@Html.DisplayFor(model => model.Movie.Ratings[i].Value)</h2>
-                  </div>
+                    <p>@Html.DisplayFor(model => model.Movie.Ratings[i].Source)</p>
+                    <h2>@Html.DisplayFor(model => model.Movie.Ratings[i].Value)</h2>
+                </div>
             }
         }
 
-        </div>
+    </div>
 
     <div class="flexcontainer3">
         <div class="plot">
@@ -106,6 +115,8 @@
         <p>Copyright Apollo13</p>
     </footer>
 
-
+    @section scripts{
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajax-unobtrusive/3.2.6/jquery.unobtrusive-ajax.min.js"></script>
+    }
 </body>
 </html>
