@@ -25,10 +25,20 @@ namespace CMDb_Grupp13.Repositories
             return JsonConvert.DeserializeObject<T>(data);
         }
 
-        public async Task<IEnumerable<TopListDto>> GetTopListAsync()    
+        public async Task<IEnumerable<CmdbDto>> GetTopListAsync()    
         {
             await Task.Delay(0);
-            return GetTestData<IEnumerable<TopListDto>>("toplist.json");
+            return GetTestData<IEnumerable<CmdbDto>>("toplist.json");
+        }
+
+        public Task<CmdbDto> GetSingleMovieAsync(string imdbID)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<CmdbDto> GetLikeDislikeAsync(string imdbID, string action)
+        {
+            throw new NotImplementedException();
         }
     }
 }

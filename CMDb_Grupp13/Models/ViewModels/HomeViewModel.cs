@@ -13,7 +13,7 @@ namespace CMDb_Grupp13.Models.ViewModels
         public IEnumerable<MovieSearchDto> Search { get; set; }
         public string SearchString { get; set; }
         public string SelectedMovie { get; set; }
-        public List<TopListDto> TopList { get; set; }
+        public List<CmdbDto> TopList { get; set; }
         public string ImdbID { get; set; }
         public List<MovieDetailsDto> Movies { get; set; }
         public List<MovieDetailsDto> SearchDetails { get; set; }
