@@ -20,9 +20,8 @@ namespace CMDb_Grupp13.Repositories
             this.apiClient = apiClient;
         }
 
-        public async Task<SearchDto> GetSearchAsync(string searchString) => await apiClient.GetAsync<SearchDto>($"{baseEndpoint}{searchEndpoint}{searchString}");
+        public async Task<SearchDto> GetSearchAsync(string searchString) => await apiClient.GetTopListAsync<SearchDto>($"{baseEndpoint}{searchEndpoint}{searchString}");
 
-        public async Task<MovieDetailsDto> GetMovieAsync(string imdbID) => await apiClient.GetAsync<MovieDetailsDto>($"{baseEndpoint}{imdbIDEndpoint}{imdbID}{plotFullEndpoint}");
-        //public async Task<MovieDetailsDto> GetFullPlotAsync(string plotFull) => await apiClient.GetAsync<MovieDetailsDto>($"{baseEndpoint}{plotFullEndpoint}{plotFull}");
+        public async Task<MovieDetailsDto> GetMovieAsync(string imdbID) => await apiClient.GetTopListAsync<MovieDetailsDto>($"{baseEndpoint}{imdbIDEndpoint}{imdbID}{plotFullEndpoint}");
     }
 }

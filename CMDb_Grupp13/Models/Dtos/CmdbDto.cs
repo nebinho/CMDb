@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace CMDb_Grupp13.Models
 {
-    public class TopListDto
+    public class CmdbDto
     {
         public string ImdbID { get; set; }
         public int numberOfLikes { get; set; }

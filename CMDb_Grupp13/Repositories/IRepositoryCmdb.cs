@@ -8,7 +8,9 @@ namespace CMDb_Grupp13.Repositories
 {
     public interface IRepositoryCmdb
     {
-        Task<IEnumerable<TopListDto>> GetTopListAsync();
+        Task<IEnumerable<CmdbDto>> GetTopListAsync();
+        Task<CmdbDto> GetSingleMovieAsync(string imdbID);
+        Task<CmdbDto> GetLikeDislikeAsync(string imdbID, string action);
 
     }
 }
