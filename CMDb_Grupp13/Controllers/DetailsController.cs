@@ -24,28 +24,17 @@ namespace CMDb_Grupp13.Controllers
         public async Task<IActionResult> Index(string imdbID)
         {
             var movie = await omdbRepo.GetMovieAsync(imdbID);
-            var movieLikesDislikes = await cmdbRepo.GetSingleMovieAsync(imdbID);
+            var movieInfo = await cmdbRepo.GetSingleMovieAsync(imdbID);
 
             var model = new DetailsViewModel
             {
                 Movie = movie,
-                Info = movieLikesDislikes
+                Info = movieInfo
             };
 
+           
             return View(model);
         }
 
-        //[HttpGet]
-        //public async Task<IActionResult> LikeDislike(string imdbID, string action)
-        //{
-
-        //        var like = await cmdbRepo.GetLikeDislikeAsync(imdbID, action);
-        //    var model = new DetailsViewModel
-        //    {
-        //        Info = like
-        //    };
-
-        //    return View(model);
-        //}
     }
 }

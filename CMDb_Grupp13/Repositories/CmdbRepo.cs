@@ -19,7 +19,6 @@ namespace CMDb_Grupp13.Repositories
 
         public async Task<IEnumerable<CmdbDto>> GetTopListAsync() => await apiClient.GetTopListAsync<IEnumerable<CmdbDto>>($"{baseEndpoint}{topFourEndpoint}");
         public async Task<CmdbDto> GetSingleMovieAsync(string imdbID) => await apiClient.GetSingleMovieAsync<CmdbDto>($"{baseEndpoint}{imdbID}");
-        public async Task<CmdbDto> GetLikeDislikeAsync(string imdbID, string action) => await apiClient.GetLikeDislikeAsync<CmdbDto>($"{baseEndpoint}{imdbID}/{action}");   
-
+       
     }
 }

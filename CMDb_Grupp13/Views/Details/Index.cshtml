@@ -9,7 +9,7 @@
     <link rel="icon" href="~/images/popcorn_icon.ico">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="~/css/details.css" />
+    <link rel="stylesheet" href="~/css/details.css?v={random string}" />
     <script src="~/js/details.js" type="module"></script>
 </head>
 <body>
@@ -28,19 +28,20 @@
                 <img src=@Html.DisplayFor(model => model.Movie.Poster) alt="">
             </a>
         </div>
-        <div class="like-dislike-container">
-            <button class="likeButton"
-                    type="button">
-                <i class="far fa-thumbs-up"></i>
-            </button>
-            <h3 class="numberOfLikes">@Html.DisplayFor(model => model.Info.numberOfLikes)</h3>
 
-            <button class="dislikeButton"
-                    type="button">
-                <i class="far fa-thumbs-down"></i>
-            </button>
-            <h3 class="numberOfDislikes">@Html.DisplayFor(model => model.Info.numberOfDislikes)</h3>
-        </div>
+    </div>
+    <div class="like-dislike-container">
+        <button class="likeButton"
+                type="button">
+            <i class="far fa-thumbs-up"></i>
+        </button>
+        <h3 class="numberOfLikes">@Html.DisplayFor(model => model.Info.numberOfLikes)</h3>
+
+        <button class="dislikeButton"
+                type="button">
+            <i class="far fa-thumbs-down"></i>
+        </button>
+        <h3 class="numberOfDislikes">@Html.DisplayFor(model => model.Info.numberOfDislikes)</h3>
     </div>
 
 
@@ -93,7 +94,7 @@
             <p>@Html.DisplayFor(model => model.Movie.Director)</p>
         </div>
 
-        <div class="director">
+        <div class="actors">
             <h2>Skådespelare</h2>
             <p>@Html.DisplayFor(model => model.Movie.Actors)</p>
         </div>

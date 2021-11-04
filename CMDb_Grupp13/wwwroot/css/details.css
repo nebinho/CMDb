@@ -33,12 +33,28 @@ header {
 
 }
 
+.numberOfDislikes, .numberOfLikes{
+    font-size: 25px;
+}
+
+
+
 
 img {
     width: 700px;
     height: auto;
-   
 }
+
+.like-dislike-container {
+    display: flex;
+    flex-direction: row;
+    color: white;
+    background-color: #a31f15;
+    padding: 40px;
+    text-align: center;
+    margin: auto;
+}
+
 
 .flexcontainer2 {
     display: flex;
@@ -113,7 +129,7 @@ img {
     
 }
 
-.actors, .plot {
+.actors, .plot, .director {
     padding: 20px;
     margin: 20px 0px 20px 0px;
    

@@ -10,7 +10,7 @@ namespace CMDb_Grupp13.Infrastructure
     {
         Task<T> GetTopListAsync<T>(string endpoint);
         Task<CmdbDto> GetSingleMovieAsync<CmdbDto>(string endpoint);
-        Task<CmdbDto> GetLikeDislikeAsync<CmdbDto>(string endpoint);
+      
         
     }
 }

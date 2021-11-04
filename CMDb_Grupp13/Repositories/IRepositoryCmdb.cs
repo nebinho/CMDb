@@ -10,7 +10,7 @@ namespace CMDb_Grupp13.Repositories
     {
         Task<IEnumerable<CmdbDto>> GetTopListAsync();
         Task<CmdbDto> GetSingleMovieAsync(string imdbID);
-        Task<CmdbDto> GetLikeDislikeAsync(string imdbID, string action);
+        
 
     }
 }
