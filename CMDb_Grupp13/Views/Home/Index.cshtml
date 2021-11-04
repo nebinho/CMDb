@@ -9,8 +9,6 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="~/css/main.css" />
-    <script src="~/js/site.js"></script>
-
 </head>
 <body>
     <header>
@@ -19,27 +17,26 @@
         <div class="logo"></div>
     </header>
 
-
-<div class="dropdown">
-    <form id="searchBar" class="searchBar" asp-action="Search" asp-controller="Home" method="get">
-        <input type="text" name="searchinput" autocomplete="off" placeholder="Sök film..." />
-        <button type="submit" id="searchButton" onsubmit="myFunction()" class="button searchButton"></button>
-    </form>
-    <div id="myDropdown" class="dropdown-content">
-        @if (Model.Search != null)
-        {
-            @foreach (var movie in Model.SearchDetails)
+    <div class="dropdown">
+        <form id="searchBar" class="searchBar" asp-action="Search" asp-controller="Home" method="get">
+            <input type="text" name="searchinput" autocomplete="off" placeholder="Sök film..." />
+            <button type="submit" id="searchButton" onsubmit="myFunction()" class="button searchButton"></button>
+        </form>
+        <div id="myDropdown" class="dropdown-content">
+            @if (Model.Search != null)
             {
-                   <a href="@Url.Action("Index", "Details", new {imdbID = movie.imdbID })"><img src="@movie.Poster" /> @movie.Title , @movie.Year </a>
+                @foreach (var movie in Model.SearchDetails)
+                {
+                    <a href="@Url.Action("Index", "Details", new {imdbID = movie.imdbID })"><img src="@movie.Poster" /> @movie.Title , @movie.Year </a>
+                }
             }
-        }
+        </div>
+        <script>
+            function myFunction() {
+                document.getElementById("myDropdown").classList.toggle("show");
+            }
+        </script>
     </div>
-    <script>
-        function myFunction() {
-            document.getElementById("myDropdown").classList.toggle("show");
-        }
-    </script>
-</div>
 
 
     <div class="flexcontainer">
@@ -103,7 +100,7 @@
         <div class="flex-picture-left-bottom">
 
             <h2>#2</h2>
-            <a href="@Url.Action("Index", "Details", new {imdbID = Model.Movies[1].imdbID })" >
+            <a href="@Url.Action("Index", "Details", new {imdbID = Model.Movies[1].imdbID })">
                 <img src="@Html.DisplayFor(model => model.Movies[1].Poster)" alt="">
             </a>
             <h2>@Html.DisplayFor(model => model.Movies[1].Title), @Html.DisplayFor(model => model.Movies[1].Year)</h2>
@@ -164,8 +161,7 @@
     </div>
 
     <footer>
-
-        <p>Copyright Apollo13</p>
+        <p>© Apollo13</p>
     </footer>
 
 

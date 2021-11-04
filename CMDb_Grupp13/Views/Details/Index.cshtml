@@ -10,15 +10,16 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="~/css/details.css" />
-    <script src="~/js/site.js" type="module"></script>
-
+    <script src="~/js/details.js" type="module"></script>
 </head>
 <body>
     <header>
         <h2><a href="@Url.Action("Index", "Home")">CMDB </a></h2>
         <p><i>- för oss filmälskare</i></p>
         <div class="logo"></div>
+        @Html.HiddenFor(model => model.Movie.imdbID)
     </header>
+
 
     <div class="flexcontainer">
         <div class="flex-picture-left">
@@ -26,26 +27,25 @@
             <a href="img/photo1.jpg" target="_blank">
                 <img src=@Html.DisplayFor(model => model.Movie.Poster) alt="">
             </a>
-            <h2><a href="#"></a> </h2>
-            @*<h3>Likes: @Html.DisplayFor(model => model.Movie.Toplist.numberOfLikes)</h3>
-            <h3>Dislikes: @Html.DisplayFor(model => model.TopList[0].numberOfDislikes)</h3>*@
-            <p>@*@Html.DisplayFor(model => model.Movies[0].Plot)*@</p>
-            <button id="likeButton" class="likeButton"
-                    type="submit" aria-label="Like button">
+        </div>
+        <div class="like-dislike-container">
+            <button class="likeButton"
+                    type="button">
                 <i class="far fa-thumbs-up"></i>
-
             </button>
+            <h3 class="numberOfLikes">@Html.DisplayFor(model => model.Info.numberOfLikes)</h3>
 
-            <button id="dislikeButton" class="dislikeButton"
-                    type="submit" aria-label="Dislike button">
+            <button class="dislikeButton"
+                    type="button">
                 <i class="far fa-thumbs-down"></i>
             </button>
-
+            <h3 class="numberOfDislikes">@Html.DisplayFor(model => model.Info.numberOfDislikes)</h3>
         </div>
-
-
-
     </div>
+
+
+
+
     <div class="flexcontainer2">
 
         @for (int i = 0; i < Model.Movie.Ratings.Count; i++)
@@ -61,25 +61,25 @@
             }
             if (Model.Movie.Ratings[i].Source == "Rotten Tomatoes")
             {
-                 <div class="flex-picture-mid-bottom">
-                   <img class="ratingImages" src="~/images/tomato.png" />
+                <div class="flex-picture-mid-bottom">
+                    <img class="ratingImages" src="~/images/tomato.png" />
 
-                     <p>@Html.DisplayFor(model => model.Movie.Ratings[i].Source)</p>
-                     <h2>@Html.DisplayFor(model => model.Movie.Ratings[i].Value)</h2>
-               </div>
+                    <p>@Html.DisplayFor(model => model.Movie.Ratings[i].Source)</p>
+                    <h2>@Html.DisplayFor(model => model.Movie.Ratings[i].Value)</h2>
+                </div>
             }
             if (Model.Movie.Ratings[i].Source == "Metacritic")
             {
-                    <div class="flex-picture-right-bottom">
-                       <img class="ratingImages" src="~/images/meta.png" />
+                <div class="flex-picture-right-bottom">
+                    <img class="ratingImages" src="~/images/meta.png" />
 
-                        <p>@Html.DisplayFor(model => model.Movie.Ratings[i].Source)</p>
-                        <h2>@Html.DisplayFor(model => model.Movie.Ratings[i].Value)</h2>
-                  </div>
+                    <p>@Html.DisplayFor(model => model.Movie.Ratings[i].Source)</p>
+                    <h2>@Html.DisplayFor(model => model.Movie.Ratings[i].Value)</h2>
+                </div>
             }
         }
 
-        </div>
+    </div>
 
     <div class="flexcontainer3">
         <div class="plot">
@@ -102,10 +102,9 @@
 
 
     <footer>
-
-        <p>Copyright Apollo13</p>
+        <p>© Apollo13</p>
     </footer>
 
-
+    <script src="~/js/details.js" type="module"></script>
 </body>
 </html>
