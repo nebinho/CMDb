@@ -198,7 +198,7 @@ input[type="text"] {
         border-radius: 0px;
     }
     .dropdown-content a:hover {
-     background-color: #f5b8e4;
+     background-color: lightgray;
     }
 
 .show {
