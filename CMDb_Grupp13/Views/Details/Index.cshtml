@@ -9,16 +9,17 @@
     <link rel="icon" href="~/images/popcorn_icon.ico">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="~/css/details.css?v={random string}" />
-    <script src="~/js/site.js" type="module"></script>
-
+    <link rel="stylesheet" href="~/css/details.css" />
+    <script src="~/js/details.js" type="module"></script>
 </head>
 <body>
     <header>
         <h2><a href="@Url.Action("Index", "Home")">CMDB </a></h2>
         <p><i>- för oss filmälskare</i></p>
         <div class="logo"></div>
+        @Html.HiddenFor(model => model.Movie.imdbID)
     </header>
+
 
     <div class="flexcontainer">
         <div class="flex-picture-left">
@@ -26,32 +27,22 @@
             <a href="img/photo1.jpg" target="_blank">
                 <img src=@Html.DisplayFor(model => model.Movie.Poster) alt="">
             </a>
-            <h2><a href="#"></a> </h2>
-            @*<h3>Likes: @Html.DisplayFor(model => model.Movie.Toplist.numberOfLikes)</h3>
-                <h3>Dislikes: @Html.DisplayFor(model => model.TopList[0].numberOfDislikes)</h3>*@
-            <p>@*@Html.DisplayFor(model => model.Movies[0].Plot)*@</p>
-            @*<button id="likeButton" class="likeButton"
-                        type="submit" aria-label="Like button">
-                    <i class="far fa-thumbs-up"></i>
+        </div>
+        <div class="like-dislike-container">
+            <button class="likeButton"
+                    type="button">
+                <i class="far fa-thumbs-up"></i>
+            </button>
+            <h3 class="numberOfLikes">@Html.DisplayFor(model => model.Info.numberOfLikes)</h3>
 
-                </button>
-
-                <button id="dislikeButton" class="dislikeButton"
-                        type="submit" aria-label="Dislike button">
-                    <i class="far fa-thumbs-down"></i>
-                </button>*@
-
+            <button class="dislikeButton"
+                    type="button">
+                <i class="far fa-thumbs-down"></i>
+            </button>
+            <h3 class="numberOfDislikes">@Html.DisplayFor(model => model.Info.numberOfDislikes)</h3>
         </div>
     </div>
 
-    <form id="likesdislikes" asp-action="LikeDislike" method="get" data-ajax="true" data-ajax-method="get" data-ajax-update="#panel" data-ajax-mode='replace' data-ajax-url="@Url.Action("LikeDislike","Details", new {imdbID = Model.Movie.imdbID, action = "like" })">
-        <label>Likes:</label>
-        <input type="button" name="likebtn" value="black" />
-        <br />
-        <p></p>
-        <label>Dislikes:</label>
-        <input type="button" name="dislikebtn" value="A" />
-    </form>
 
 
 
@@ -111,12 +102,9 @@
 
 
     <footer>
-
-        <p>Copyright Apollo13</p>
+        <p>© Apollo13</p>
     </footer>
 
-    @section scripts{
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajax-unobtrusive/3.2.6/jquery.unobtrusive-ajax.min.js"></script>
-    }
+    <script src="~/js/details.js" type="module"></script>
 </body>
 </html>

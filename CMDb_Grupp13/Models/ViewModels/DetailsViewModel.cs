@@ -9,6 +9,5 @@ namespace CMDb_Grupp13.Models.ViewModels
     {
         public MovieDetailsDto Movie { get; set; }
         public CmdbDto Info { get; set; }
-
     }
 }
