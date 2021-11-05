@@ -8,7 +8,7 @@ namespace CMDb_Grupp13.Repositories
 {
     public interface IRepositoryCmdb
     {
-        Task<IEnumerable<CmdbDto>> GetTopListAsync();
+        Task<IEnumerable<CmdbDto>> GetTopListAsync(int numberOfMovies);
         Task<CmdbDto> GetSingleMovieAsync(string imdbID);
         
 

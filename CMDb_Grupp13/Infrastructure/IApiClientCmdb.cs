@@ -9,8 +9,6 @@ namespace CMDb_Grupp13.Infrastructure
     public interface IApiClientCmdb
     {
         Task<T> GetTopListAsync<T>(string endpoint);
-        Task<CmdbDto> GetSingleMovieAsync<CmdbDto>(string endpoint);
-      
-        
+        Task<CmdbDto> GetSingleMovieAsync<CmdbDto>(string endpoint);   
     }
 }

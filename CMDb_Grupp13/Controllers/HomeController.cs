@@ -26,7 +26,7 @@ namespace CMDb_Grupp13.Controllers
         {
             try
             {
-                var task1 = cmdbRepo.GetTopListAsync();
+                var task1 = cmdbRepo.GetTopListAsync(4);
                 var topList = await task1;
 
                 var tasks = topList.Select(m => omdbRepo.GetMovieAsync(m.imdbID));
@@ -54,7 +54,7 @@ namespace CMDb_Grupp13.Controllers
         {
             try
             {             
-                var task1 = cmdbRepo.GetTopListAsync();
+                var task1 = cmdbRepo.GetTopListAsync(4);
                 var task2 = omdbRepo.GetSearchAsync(searchinput);
 
                 await Task.WhenAll(task1, task2);
