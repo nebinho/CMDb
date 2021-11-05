@@ -12,7 +12,6 @@ let urlDecrease = (baseEndpoint + imdbID + dislikeEndpoint)
 document.querySelector('.likeButton').addEventListener('click', increaseLikes)
 document.querySelector('.dislikeButton').addEventListener('click', increaseDislikes)
 
-
 async function increaseLikes() {
     try
     {
@@ -28,6 +27,7 @@ async function increaseLikes() {
 
 function displayLikes(likesData) {
     document.querySelector('.numberOfLikes').textContent = likesData.numberOfLikes
+    disableButtons()
 }
 
 async function increaseDislikes() {
@@ -43,6 +43,12 @@ async function increaseDislikes() {
 
 function displayDislikes(dislikesData) {
     document.querySelector('.numberOfDislikes').textContent = dislikesData.numberOfDislikes
+    disableButtons()
+}
+
+function disableButtons() {
+    document.querySelector('.likeButton').disabled = true;
+    document.querySelector('.dislikeButton').disabled = true;
 }
 
 

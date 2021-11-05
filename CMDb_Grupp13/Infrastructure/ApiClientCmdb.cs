@@ -28,7 +28,6 @@ namespace CMDb_Grupp13.Infrastructure
                 }
                 if (response.StatusCode == HttpStatusCode.TooManyRequests)
                 {
-
                     throw new Exception("För många anrop mot api");
                 }
                 if (response.StatusCode == HttpStatusCode.NoContent)

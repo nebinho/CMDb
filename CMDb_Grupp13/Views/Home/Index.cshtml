@@ -23,9 +23,9 @@
             <button type="submit" id="searchButton" onsubmit="myFunction()" class="button searchButton"></button>
         </form>
         <div id="myDropdown" class="dropdown-content">
-            @if (Model.Search != null)
+            @if (Model.SearchResult != null)
             {
-                @foreach (var movie in Model.SearchDetails)
+                @foreach (var movie in Model.SearchList)
                 {
                     <a href="@Url.Action("Index", "Details", new {imdbID = movie.imdbID })"><img src="@movie.Poster" /> @movie.Title , @movie.Year </a>
                 }
@@ -37,23 +37,24 @@
             }
         </script>
     </div>
+            <h3>@Html.ValidationMessage("validation")</h3>
 
 
     <div class="flexcontainer">
         <div class="flex-picture-left">
             <h2 class="topMovie">Toppfilmen just nu!</h2>
-            <a href="@Url.Action("Index", "Details", new {imdbID = Model.Movies[0].imdbID })">
-                <img src="@Html.DisplayFor(model => model.Movies[0].Poster)" alt="">
+            <a href="@Url.Action("Index", "Details", new {imdbID = Model.MovieDetails[0].imdbID })">
+                <img src="@Html.DisplayFor(model => model.MovieDetails[0].Poster)" alt="">
             </a>
-            <h2><a href="#"></a>@Html.DisplayFor(model => model.Movies[0].Title), @Html.DisplayFor(model => model.Movies[0].Year) </h2>
+            <h2><a href="#"></a>@Html.DisplayFor(model => model.MovieDetails[0].Title), @Html.DisplayFor(model => model.MovieDetails[0].Year) </h2>
             <h3>Likes: @Html.DisplayFor(model => model.TopList[0].numberOfLikes)</h3>
             <h3>Dislikes: @Html.DisplayFor(model => model.TopList[0].numberOfDislikes)</h3>
 
-            <p id="shortPlot">@Model.Movies[0].Plot.Substring(0, 50). . . </p>
+            <p id="shortPlot">@Model.MovieDetails[0].Plot.Substring(0, 50). . . </p>
             <button onclick="plotFunction()" class="button-style" id="textButton1">Läs mer</button>
             <script>
                 function plotFunction() {
-                    document.getElementById("shortPlot").innerHTML = "@Model.Movies[0].Plot";
+                    document.getElementById("shortPlot").innerHTML = "@Model.MovieDetails[0].Plot";
                     var buttonText = document.getElementById("textButton1");
                     buttonText.innerHTML = "Läs mindre";
                 }
@@ -63,33 +64,33 @@
 
     </div>
     <div class="flexcontainer2">
-        @for (int i = 0; i < Model.Movies[0].Ratings.Count; i++)
+        @for (int i = 0; i < Model.MovieDetails[0].Ratings.Count; i++)
         {
-            if (Model.Movies[0].Ratings[i].Source == "Internet Movie Database")
-            {
+        @if (Model.MovieDetails[0].Ratings[i].Source == "Internet Movie Database")
+        {
                 <div class="flex-picture-left-bottom">
                     <img class="ratingImages" src="~/images/imdb.png" />
 
-                    <p>@Html.DisplayFor(model => model.Movies[0].Ratings[i].Source)</p>
-                    <h2>@Html.DisplayFor(model => model.Movies[0].Ratings[i].Value)</h2>
+                    <p>@Html.DisplayFor(model => model.MovieDetails[0].Ratings[i].Source)</p>
+                    <h2>@Html.DisplayFor(model => model.MovieDetails[0].Ratings[i].Value)</h2>
                 </div>
-            }
-            if (Model.Movies[0].Ratings[i].Source == "Rotten Tomatoes")
-            {
+        }
+        if (Model.MovieDetails[0].Ratings[i].Source == "Rotten Tomatoes")
+        {
                 <div class="flex-picture-mid-bottom">
                     <img class="ratingImages" src="~/images/tomato.png" />
 
-                    <p>@Html.DisplayFor(model => model.Movies[0].Ratings[i].Source)</p>
-                    <h2>@Html.DisplayFor(model => model.Movies[0].Ratings[i].Value)</h2>
+                    <p>@Html.DisplayFor(model => model.MovieDetails[0].Ratings[i].Source)</p>
+                    <h2>@Html.DisplayFor(model => model.MovieDetails[0].Ratings[i].Value)</h2>
                 </div>
-            }
-            if (Model.Movies[0].Ratings[i].Source == "Metacritic")
-            {
+        }
+        if (Model.MovieDetails[0].Ratings[i].Source == "Metacritic")
+        {
                 <div class="flex-picture-right-bottom">
                     <img class="ratingImages" src="~/images/meta.png" />
 
-                    <p>@Html.DisplayFor(model => model.Movies[0].Ratings[i].Source)</p>
-                    <h2>@Html.DisplayFor(model => model.Movies[0].Ratings[i].Value)</h2>
+                    <p>@Html.DisplayFor(model => model.MovieDetails[0].Ratings[i].Source)</p>
+                    <h2>@Html.DisplayFor(model => model.MovieDetails[0].Ratings[i].Value)</h2>
                 </div>
             }
         }
@@ -100,19 +101,19 @@
         <div class="flex-picture-left-bottom">
 
             <h2>#2</h2>
-            <a href="@Url.Action("Index", "Details", new {imdbID = Model.Movies[1].imdbID })">
-                <img src="@Html.DisplayFor(model => model.Movies[1].Poster)" alt="">
+            <a href="@Url.Action("Index", "Details", new {imdbID = Model.MovieDetails[1].imdbID })">
+                <img src="@Html.DisplayFor(model => model.MovieDetails[1].Poster)" alt="">
             </a>
-            <h2>@Html.DisplayFor(model => model.Movies[1].Title), @Html.DisplayFor(model => model.Movies[1].Year)</h2>
+            <h2>@Html.DisplayFor(model => model.MovieDetails[1].Title), @Html.DisplayFor(model => model.MovieDetails[1].Year)</h2>
 
             <h3>Likes: @Html.DisplayFor(model => model.TopList[1].numberOfLikes)</h3>
             <h3>Dislikes: @Html.DisplayFor(model => model.TopList[1].numberOfDislikes)</h3>
 
-            <p id="shortPlot1">@Model.Movies[1].Plot.Substring(0, 50). . . </p>
+            <p id="shortPlot1">@Model.MovieDetails[1].Plot.Substring(0, 50). . . </p>
             <button onclick="plotFunction1()" class="button-style" id="textButton2">Läs mer</button>
             <script>
                 function plotFunction1() {
-                    document.getElementById("shortPlot1").innerHTML = "@Model.Movies[1].Plot";
+                    document.getElementById("shortPlot1").innerHTML = "@Model.MovieDetails[1].Plot";
                     var buttonText = document.getElementById("textButton2");
                     buttonText.innerHTML = "Läs mindre";
                 }
@@ -120,19 +121,19 @@
         </div>
         <div class="flex-picture-mid-bottom">
             <h2>#3</h2>
-            <a href="@Url.Action("Index", "Details", new {imdbID = Model.Movies[2].imdbID })">
-                <img src="@Html.DisplayFor(model => model.Movies[2].Poster)" alt="">
+            <a href="@Url.Action("Index", "Details", new {imdbID = Model.MovieDetails[2].imdbID })">
+                <img src="@Html.DisplayFor(model => model.MovieDetails[2].Poster)" alt="">
             </a>
-            <h2>@Html.DisplayFor(model => model.Movies[2].Title), @Html.DisplayFor(model => model.Movies[2].Year)</h2>
+            <h2>@Html.DisplayFor(model => model.MovieDetails[2].Title), @Html.DisplayFor(model => model.MovieDetails[2].Year)</h2>
 
             <h3>Likes: @Html.DisplayFor(model => model.TopList[2].numberOfLikes)</h3>
             <h3>Dislikes: @Html.DisplayFor(model => model.TopList[2].numberOfDislikes)</h3>
 
-            <p id="shortPlot2">@Model.Movies[2].Plot.Substring(0, 50) . . .</p>
+            <p id="shortPlot2">@Model.MovieDetails[2].Plot.Substring(0, 50) . . .</p>
             <button onclick="plotFunction2()" class="button-style" id="textButton3">Läs mer</button>
             <script>
                 function plotFunction2() {
-                    document.getElementById("shortPlot2").innerHTML = "@Model.Movies[2].Plot";
+                    document.getElementById("shortPlot2").innerHTML = "@Model.MovieDetails[2].Plot";
                     var buttonText = document.getElementById("textButton3");
                     buttonText.innerHTML = "Läs mindre";
                 }
@@ -140,19 +141,19 @@
         </div>
         <div class="flex-picture-right-bottom">
             <h2>#4</h2>
-            <a href="@Url.Action("Index", "Details", new {imdbID = Model.Movies[3].imdbID })">
-                <img src="@Html.DisplayFor(model => model.Movies[3].Poster)" alt="">
+            <a href="@Url.Action("Index", "Details", new {imdbID = Model.MovieDetails[3].imdbID })">
+                <img src="@Html.DisplayFor(model => model.MovieDetails[3].Poster)" alt="">
             </a>
-            <h2>@Html.DisplayFor(model => model.Movies[3].Title), @Html.DisplayFor(model => model.Movies[3].Year) </h2>
+            <h2>@Html.DisplayFor(model => model.MovieDetails[3].Title), @Html.DisplayFor(model => model.MovieDetails[3].Year) </h2>
 
             <h3>Likes: @Html.DisplayFor(model => model.TopList[3].numberOfLikes)</h3>
             <h3>Dislikes: @Html.DisplayFor(model => model.TopList[3].numberOfDislikes)</h3>
 
-            <p id="shortPlot3">@Model.Movies[3].Plot.Substring(0, 50). . . </p>
+            <p id="shortPlot3">@Model.MovieDetails[3].Plot.Substring(0, 50). . . </p>
             <button onclick="plotFunction3()" class="button-style" id="textButton4">Läs mer</button>
             <script>
                 function plotFunction3() {
-                    document.getElementById("shortPlot3").innerHTML = "@Model.Movies[3].Plot";
+                    document.getElementById("shortPlot3").innerHTML = "@Model.MovieDetails[3].Plot";
                     var buttonText = document.getElementById("textButton4");
                     buttonText.innerHTML = "Läs mindre";
                 }

@@ -10,9 +10,8 @@ namespace CMDb_Grupp13.Controllers
 {
     public class DetailsController : Controller
     {
-        private IRepositoryCmdb cmdbRepo;
-        private IRepositoryOmdb omdbRepo;
-
+        private readonly IRepositoryCmdb cmdbRepo;
+        private readonly IRepositoryOmdb omdbRepo;
 
         public DetailsController(IRepositoryCmdb cmdbRepo, IRepositoryOmdb omdbRepo)
         {
@@ -23,18 +22,31 @@ namespace CMDb_Grupp13.Controllers
         [HttpGet]
         public async Task<IActionResult> Index(string imdbID)
         {
-            var movie = await omdbRepo.GetMovieAsync(imdbID);
-            var movieInfo = await cmdbRepo.GetSingleMovieAsync(imdbID);
-
-            var model = new DetailsViewModel
+            try
             {
-                Movie = movie,
-                Info = movieInfo
-            };
+                var task1 = omdbRepo.GetMovieAsync(imdbID);
+                var task2 = cmdbRepo.GetSingleMovieAsync(imdbID);
 
-           
-            return View(model);
+                await Task.WhenAll(task1, task2);
+
+                var movie = await task1;
+                var movieInfo = await task2;
+
+                var model = new DetailsViewModel
+                {
+                    Movie = movie,
+                    Info = movieInfo
+                };
+
+                return View(model);
+            }
+            catch (Exception)
+            {
+                var model = new HomeViewModel();
+                ModelState.AddModelError(string.Empty, "Kunde inte hämta detaljer om filmen");
+                return View(model);
+                throw;
+            }
         }
-
     }
 }
