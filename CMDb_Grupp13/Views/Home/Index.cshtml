@@ -50,13 +50,24 @@
             <h3>Likes: @Html.DisplayFor(model => model.TopList[0].numberOfLikes)</h3>
             <h3>Dislikes: @Html.DisplayFor(model => model.TopList[0].numberOfDislikes)</h3>
 
-            <p id="shortPlot">@Model.MovieDetails[0].Plot.Substring(0, 50). . . </p>
-            <button onclick="plotFunction()" class="button-style" id="textButton1">Läs mer</button>
+            <p id="shortPlot">@Model.MovieDetails[0].Plot.Substring(0, 50)<span id="dots">...</span><span id="more">@Model.MovieDetails[0].Plot</span></p>
+            <button onclick="plotFunction()" class="button-style" id="plotButton">Läs mer</button>
             <script>
                 function plotFunction() {
-                    document.getElementById("shortPlot").innerHTML = "@Model.MovieDetails[0].Plot";
-                    var buttonText = document.getElementById("textButton1");
-                    buttonText.innerHTML = "Läs mindre";
+                    var dots = document.getElementById("dots");
+                    var moreText = document.getElementById("more");
+                    var btnText = document.getElementById("plotButton");
+
+                    if (dots.style.display === "none") {
+                        dots.style.display = "inline";
+                        btnText.innerHTML = "Läs mer";
+                        moreText.style.display = "none";
+                    }
+                    else {
+                        dots.style.display = "none";
+                        btnText.innerHTML = "Läs mindre";
+                        moreText.style.display = "inline";
+                    }
                 }
             </script>
         </div>
@@ -107,13 +118,24 @@
             <h3>Likes: @Html.DisplayFor(model => model.TopList[1].numberOfLikes)</h3>
             <h3>Dislikes: @Html.DisplayFor(model => model.TopList[1].numberOfDislikes)</h3>
 
-            <p id="shortPlot1">@Model.MovieDetails[1].Plot.Substring(0, 50). . . </p>
-            <button onclick="plotFunction1()" class="button-style" id="textButton2">Läs mer</button>
+            <p id="shortPlot">@Model.MovieDetails[1].Plot.Substring(0, 50)<span id="dots1">...</span><span id="more1">@Model.MovieDetails[1].Plot</span></p>
+            <button onclick="plotFunction1()" class="button-style" id="plotButton1">Läs mer</button>
             <script>
                 function plotFunction1() {
-                    document.getElementById("shortPlot1").innerHTML = "@Model.MovieDetails[1].Plot";
-                    var buttonText = document.getElementById("textButton2");
-                    buttonText.innerHTML = "Läs mindre";
+                    var dots = document.getElementById("dots1");
+                    var moreText = document.getElementById("more1");
+                    var btnText = document.getElementById("plotButton1");
+
+                    if (dots.style.display === "none") {
+                        dots.style.display = "inline";
+                        btnText.innerHTML = "Läs mer";
+                        moreText.style.display = "none";
+                    }
+                    else {
+                        dots.style.display = "none";
+                        btnText.innerHTML = "Läs mindre";
+                        moreText.style.display = "inline";
+                    }
                 }
             </script>
         </div>
@@ -127,13 +149,24 @@
             <h3>Likes: @Html.DisplayFor(model => model.TopList[2].numberOfLikes)</h3>
             <h3>Dislikes: @Html.DisplayFor(model => model.TopList[2].numberOfDislikes)</h3>
 
-            <p id="shortPlot2">@Model.MovieDetails[2].Plot.Substring(0, 50) . . .</p>
-            <button onclick="plotFunction2()" class="button-style" id="textButton3">Läs mer</button>
+            <p id="shortPlot">@Model.MovieDetails[2].Plot.Substring(0, 50)<span id="dots2">...</span><span id="more2">@Model.MovieDetails[2].Plot</span></p>
+            <button onclick="plotFunction2()" class="button-style" id="plotButton2">Läs mer</button>
             <script>
                 function plotFunction2() {
-                    document.getElementById("shortPlot2").innerHTML = "@Model.MovieDetails[2].Plot";
-                    var buttonText = document.getElementById("textButton3");
-                    buttonText.innerHTML = "Läs mindre";
+                    var dots = document.getElementById("dots2");
+                    var moreText = document.getElementById("more2");
+                    var btnText = document.getElementById("plotButton2");
+
+                    if (dots.style.display === "none") {
+                        dots.style.display = "inline";
+                        btnText.innerHTML = "Läs mer";
+                        moreText.style.display = "none";
+                    }
+                    else {
+                        dots.style.display = "none";
+                        btnText.innerHTML = "Läs mindre";
+                        moreText.style.display = "inline";
+                    }
                 }
             </script>
         </div>
@@ -147,13 +180,24 @@
             <h3>Likes: @Html.DisplayFor(model => model.TopList[3].numberOfLikes)</h3>
             <h3>Dislikes: @Html.DisplayFor(model => model.TopList[3].numberOfDislikes)</h3>
 
-            <p id="shortPlot3">@Model.MovieDetails[3].Plot.Substring(0, 50). . . </p>
-            <button onclick="plotFunction3()" class="button-style" id="textButton4">Läs mer</button>
+            <p id="shortPlot">@Model.MovieDetails[3].Plot.Substring(0, 50)<span id="dots3">...</span><span id="more3">@Model.MovieDetails[3].Plot</span></p>
+            <button onclick="plotFunction3()" class="button-style" id="plotButton3">Läs mer</button>
             <script>
                 function plotFunction3() {
-                    document.getElementById("shortPlot3").innerHTML = "@Model.MovieDetails[3].Plot";
-                    var buttonText = document.getElementById("textButton4");
-                    buttonText.innerHTML = "Läs mindre";
+                    var dots = document.getElementById("dots3");
+                    var moreText = document.getElementById("more3");
+                    var btnText = document.getElementById("plotButton3");
+
+                    if (dots.style.display === "none") {
+                        dots.style.display = "inline";
+                        btnText.innerHTML = "Läs mer";
+                        moreText.style.display = "none";
+                    }
+                    else {
+                        dots.style.display = "none";
+                        btnText.innerHTML = "Läs mindre";
+                        moreText.style.display = "inline";
+                    }
                 }
             </script>
         </div>

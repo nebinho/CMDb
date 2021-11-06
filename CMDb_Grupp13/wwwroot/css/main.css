@@ -54,6 +54,10 @@ img {
   
 }
 
+#more, #more1, #more2, #more3 {
+    display: none;
+}
+
 
 .flexcontainer3 {
     display: flex;
