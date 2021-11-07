@@ -11,13 +11,18 @@
 }
 
 header {
-    padding: 50px;
+    padding: 70px;
     text-align: center;
     font-size: 35px;
     color: white;
     font-family: monospace;
     background: #2b2c30;
 }
+
+    header h2 a {
+        text-decoration: none;
+        color: white;
+    }
 
 
 
@@ -38,10 +43,8 @@ header {
 }
 
 
-
-
 img {
-    width: 700px;
+    width: 500px;
     height: auto;
 }
 
@@ -64,11 +67,12 @@ img {
     padding: 40px;
     text-align: center;
     margin: auto;
+    border-style: groove;
 }
 
 .ratingImages {
     width: 50px;
-    height: auto
+    height: auto;
 }
 
 .button {
@@ -76,7 +80,6 @@ img {
     border: 0;
     background: transparent;
 }
-
 
 
 .flex-picture-left {
@@ -93,40 +96,30 @@ img {
     background-color: #a31f15;
     padding: 20px;
     flex: 33%;
+    font-size: 15px;
 }
 
 .flex-picture-mid-bottom {
     background-color: #a31f15;
     padding: 20px;
     flex: 33%;
+    font-size: 15px;
 }
 
 .flex-picture-right-bottom {
     background-color: #a31f15;
     padding: 20px;
     flex: 33%;
+    font-size: 15px;
 }
-
-.searchBar {
-    width: 35vw;
-    display: flex;
-    border-radius: 500px;
-    border: 2px solid black;
-    background: white;
-    padding: 20px;
-    margin-left: 600px;
-    justify-content: center;
-}
-
-
 
 
 .flexcontainer3 {
     padding: 0;
     color: white;
     font-size: 25px;
-   
-    
+ 
+     
 }
 
 .actors, .plot, .director {
@@ -138,6 +131,7 @@ img {
 
 .flexcontainer plot p{
     text-align: center;
+    font-size: 15px;
 }
 
 .searchEntry {
@@ -146,21 +140,11 @@ img {
     
 }
 
-input[type="text"] {
-    flex-grow: 1;
-    text-align: left;
-    min-width: 150px;
-    border: 0;
-    outline: none;
-    font-size: 20px;
-}
-
-
 
 @media only screen and (max-width: 1000px) {
 
     img {
-        max-width: 70%;
+        max-width: 80%;
         height: auto;
     }
 }

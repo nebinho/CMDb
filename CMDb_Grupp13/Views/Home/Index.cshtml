@@ -16,7 +16,7 @@
         <p><i>- för oss filmälskare</i></p>
         <div class="logo"></div>
     </header>
-
+   
     <div class="dropdown">
         <form id="searchBar" class="searchBar" asp-action="Search" asp-controller="Home" method="get">
             <input type="text" name="searchinput" autocomplete="off" placeholder="Sök film..." />
@@ -37,7 +37,7 @@
             }
         </script>
     </div>
-            <h3>@Html.ValidationMessage("validation")</h3>
+            <h3 class="validationMessage">@Html.ValidationMessage("validation")</h3>
 
 
     <div class="flexcontainer">

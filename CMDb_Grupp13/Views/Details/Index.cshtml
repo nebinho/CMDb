@@ -23,7 +23,7 @@
 
     <div class="flexcontainer">
         <div class="flex-picture-left">
-            <h2 class="topMovie">@Html.DisplayFor(model => model.Movie.Title), @Html.DisplayFor(model => model.Movie.Year)</h2>
+            <h1 class="topMovie">@Html.DisplayFor(model => model.Movie.Title), @Html.DisplayFor(model => model.Movie.Year)</h1>
             <a href="img/photo1.jpg" target="_blank">
                 <img src=@Html.DisplayFor(model => model.Movie.Poster) alt="">
             </a>
@@ -84,18 +84,18 @@
 
     <div class="flexcontainer3">
         <div class="plot">
-            <h2>Handling</h2>
+            <h3>Handling</h3>
             <p>@Html.DisplayFor(model => model.Movie.Plot)</p>
 
         </div>
 
         <div class="director">
-            <h2>Regissör</h2>
+            <h3>Regissör</h3>
             <p>@Html.DisplayFor(model => model.Movie.Director)</p>
         </div>
 
         <div class="actors">
-            <h2>Skådespelare</h2>
+            <h3>Skådespelare</h3>
             <p>@Html.DisplayFor(model => model.Movie.Actors)</p>
         </div>
 

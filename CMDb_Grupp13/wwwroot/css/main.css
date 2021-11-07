@@ -11,7 +11,7 @@ body {
 }
 
 header {
-    padding: 50px;
+    padding: 70px;
     text-align: center;
     font-size: 35px;
     color: white;
@@ -19,8 +19,9 @@ header {
     background: #2b2c30;
 }
 
-header a{
+header h2 a{
     text-decoration: none;
+    color: white;
 }
 
 .button-style {
@@ -46,6 +47,7 @@ img {
     padding: 40px;
     text-align: center;
     margin: auto;
+    border-style: groove;
 }
 
 .ratingImages {
@@ -56,6 +58,11 @@ img {
 
 #more, #more1, #more2, #more3 {
     display: none;
+}
+
+.validationMessage{
+    text-align: center;
+    padding: 10px;
 }
 
 
@@ -72,12 +79,13 @@ img {
 .flex-picture-left {
     background-color: #a31f15;
     display: block;
-    padding: 70px;
+    padding: 40px;
     text-align: center;
     margin-right: 70px;
     color: white;
     text-align: center;
     font-size: 15px;
+
 }
 
 
@@ -109,7 +117,7 @@ img {
     border: 2px solid black;
     background: white;
     padding: 20px;
-    margin-left: 600px;
+    margin-left: 550px;
     justify-content: center;
 }
 
@@ -188,7 +196,8 @@ input[type="text"] {
     background: white;
     min-width: 600px;
     z-index: 1;
-    margin-left: 650px;
+    margin-left: 550px;
+
 }
     .dropdown-content a {
         color: black;
