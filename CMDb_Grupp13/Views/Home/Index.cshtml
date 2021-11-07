@@ -1,118 +1,213 @@
 ﻿@model HomeViewModel
 
 <!DOCTYPE HTML>
-<!--
-    Escape Velocity by HTML5 UP
-    html5up.net |
-    Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
 <html>
 <head>
-    <title>Escape Velocity by HTML5 UP</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>CMDB</title>
     <link rel="icon" href="~/images/popcorn_icon.ico">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link href="~/css/main.css" rel="stylesheet" />
-
+    <link rel="stylesheet" href="~/css/main.css?v={random string}" />
 </head>
 <body>
     <header>
-        <h2>CMDB</h2>
+        <h2><a href="@Url.Action("Index", "Home")">CMDB </a></h2>
         <p><i>- för oss filmälskare</i></p>
         <div class="logo"></div>
     </header>
+   
+    <div class="dropdown">
+        <form id="searchBar" class="searchBar" asp-action="Search" asp-controller="Home" method="get">
+            <input type="text" name="searchinput" autocomplete="off" placeholder="Sök film..." />
+            <button type="submit" id="searchButton" onsubmit="myFunction()" class="button searchButton"></button>
+        </form>
+        <div id="myDropdown" class="dropdown-content">
+            @if (Model.SearchResult != null)
+            {
+                @foreach (var movie in Model.SearchList)
+                {
+                    <a href="@Url.Action("Index", "Details", new {imdbID = movie.imdbID })"><img src="@movie.Poster" /> @movie.Title , @movie.Year </a>
+                }
+            }
+        </div>
+        <script>
+            function myFunction() {
+                document.getElementById("myDropdown").classList.toggle("show");
+            }
+        </script>
+    </div>
+            <h3 class="validationMessage">@Html.ValidationMessage("validation")</h3>
 
 
     <div class="flexcontainer">
         <div class="flex-picture-left">
-            <h2>Toppfilmen just nu!</h2>
-            <a href="img/photo1.jpg" target="_blank">
-                <img src="~/images/movietheater.jpg" alt="">
+            <h2 class="topMovie">Toppfilmen just nu!</h2>
+            <a href="@Url.Action("Index", "Details", new {imdbID = Model.MovieDetails[0].imdbID })">
+                <img src="@Html.DisplayFor(model => model.MovieDetails[0].Poster)" alt="">
             </a>
-            <h2><a href="#"></a>Titel</h2>
-            <p>Lorem ipsum Lorem ipsum Lorem ipsum</p>
-            <button class="button-style">Läs mer</button>
+            <h2><a href="#"></a>@Html.DisplayFor(model => model.MovieDetails[0].Title), @Html.DisplayFor(model => model.MovieDetails[0].Year) </h2>
+            <h3>Likes: @Html.DisplayFor(model => model.TopList[0].numberOfLikes)</h3>
+            <h3>Dislikes: @Html.DisplayFor(model => model.TopList[0].numberOfDislikes)</h3>
 
+            <p id="shortPlot">@Model.MovieDetails[0].Plot.Substring(0, 50)<span id="dots">...</span><span id="more">@Model.MovieDetails[0].Plot</span></p>
+            <button onclick="plotFunction()" class="button-style" id="plotButton">Läs mer</button>
+            <script>
+                function plotFunction() {
+                    var dots = document.getElementById("dots");
+                    var moreText = document.getElementById("more");
+                    var btnText = document.getElementById("plotButton");
+
+                    if (dots.style.display === "none") {
+                        dots.style.display = "inline";
+                        btnText.innerHTML = "Läs mer";
+                        moreText.style.display = "none";
+                    }
+                    else {
+                        dots.style.display = "none";
+                        btnText.innerHTML = "Läs mindre";
+                        moreText.style.display = "inline";
+                    }
+                }
+            </script>
         </div>
-     
-
     </div>
     <div class="flexcontainer2">
+        @for (int i = 0; i < Model.MovieDetails[0].Ratings.Count; i++)
+        {
+        @if (Model.MovieDetails[0].Ratings[i].Source == "Internet Movie Database")
+        {
+                <div class="flex-picture-left-bottom">
+                    <img class="ratingImages" src="~/images/imdb.png" />
 
-        <div class="flex-picture-left-bottom">
+                    <p>@Html.DisplayFor(model => model.MovieDetails[0].Ratings[i].Source)</p>
+                    <h2>@Html.DisplayFor(model => model.MovieDetails[0].Ratings[i].Value)</h2>
+                </div>
+        }
+        if (Model.MovieDetails[0].Ratings[i].Source == "Rotten Tomatoes")
+        {
+                <div class="flex-picture-mid-bottom">
+                    <img class="ratingImages" src="~/images/tomato.png" />
 
-            <a href="" target="_blank">
-                @*<img src="" alt="">*@
-            </a>
+                    <p>@Html.DisplayFor(model => model.MovieDetails[0].Ratings[i].Source)</p>
+                    <h2>@Html.DisplayFor(model => model.MovieDetails[0].Ratings[i].Value)</h2>
+                </div>
+        }
+        if (Model.MovieDetails[0].Ratings[i].Source == "Metacritic")
+        {
+                <div class="flex-picture-right-bottom">
+                    <img class="ratingImages" src="~/images/meta.png" />
 
-            <div>
-                <img src="~/images/imdb.png" />
-            </div>
-            <h2>Rating 1</h2>
-
-            <p></p>
-
-        </div>
-        <div class="flex-picture-mid-bottom">
-
-            <a href="" target="_blank">
-                @*<img src="" alt="">*@
-            </a>
-
-            <img src="~/images/tomato.png" />
-            <h2>Rating 2</h2>
-            <p></p>
-
-        </div>
-        <div class="flex-picture-right-bottom">
-
-            <a href="" target="_blank">
-                @*<img src="" alt="">*@
-            </a>
-
-            <img src="~/images/meta.png" />
-            <h2>Rating 3</h2>
-            <p></p>
-
-        </div>
+                    <p>@Html.DisplayFor(model => model.MovieDetails[0].Ratings[i].Source)</p>
+                    <h2>@Html.DisplayFor(model => model.MovieDetails[0].Ratings[i].Value)</h2>
+                </div>
+            }
+        }
     </div>
-
+    <h2 class="topMovies">Andra toppfilmer</h2>
     <div class="flexcontainer3">
 
         <div class="flex-picture-left-bottom">
+
             <h2>#2</h2>
-            <a href="~/images/movietheater.jpg" target="_blank">
-                <img src="~/images/movietheater.jpg" alt="">
+            <a href="@Url.Action("Index", "Details", new {imdbID = Model.MovieDetails[1].imdbID })">
+                <img src="@Html.DisplayFor(model => model.MovieDetails[1].Poster)" alt="">
             </a>
-            <h2>Titel</h2>
-            <p>Lorem ipsum Lorem ipsum Lorem ipsum</p>
-            <button class="button-style">Läs mer</button>
+            <h2>@Html.DisplayFor(model => model.MovieDetails[1].Title), @Html.DisplayFor(model => model.MovieDetails[1].Year)</h2>
+
+            <h3>Likes: @Html.DisplayFor(model => model.TopList[1].numberOfLikes)</h3>
+            <h3>Dislikes: @Html.DisplayFor(model => model.TopList[1].numberOfDislikes)</h3>
+
+            <p id="shortPlot">@Model.MovieDetails[1].Plot.Substring(0, 50)<span id="dots1">...</span><span id="more1">@Model.MovieDetails[1].Plot</span></p>
+            <button onclick="plotFunction1()" class="button-style" id="plotButton1">Läs mer</button>
+            <script>
+                function plotFunction1() {
+                    var dots = document.getElementById("dots1");
+                    var moreText = document.getElementById("more1");
+                    var btnText = document.getElementById("plotButton1");
+
+                    if (dots.style.display === "none") {
+                        dots.style.display = "inline";
+                        btnText.innerHTML = "Läs mer";
+                        moreText.style.display = "none";
+                    }
+                    else {
+                        dots.style.display = "none";
+                        btnText.innerHTML = "Läs mindre";
+                        moreText.style.display = "inline";
+                    }
+                }
+            </script>
         </div>
         <div class="flex-picture-mid-bottom">
             <h2>#3</h2>
-            <a href="~/images/movietheater.jpg" target="_blank">
-                <img src="~/images/movietheater.jpg" alt="">
+            <a href="@Url.Action("Index", "Details", new {imdbID = Model.MovieDetails[2].imdbID })">
+                <img src="@Html.DisplayFor(model => model.MovieDetails[2].Poster)" alt="">
             </a>
-            <h2>Titel</h2>
-            <p>Lorem ipsum Lorem ipsum Lorem ipsum</p>
-            <button class="button-style">Läs mer</button>
+            <h2>@Html.DisplayFor(model => model.MovieDetails[2].Title), @Html.DisplayFor(model => model.MovieDetails[2].Year)</h2>
+
+            <h3>Likes: @Html.DisplayFor(model => model.TopList[2].numberOfLikes)</h3>
+            <h3>Dislikes: @Html.DisplayFor(model => model.TopList[2].numberOfDislikes)</h3>
+
+            <p id="shortPlot">@Model.MovieDetails[2].Plot.Substring(0, 50)<span id="dots2">...</span><span id="more2">@Model.MovieDetails[2].Plot</span></p>
+            <button onclick="plotFunction2()" class="button-style" id="plotButton2">Läs mer</button>
+            <script>
+                function plotFunction2() {
+                    var dots = document.getElementById("dots2");
+                    var moreText = document.getElementById("more2");
+                    var btnText = document.getElementById("plotButton2");
+
+                    if (dots.style.display === "none") {
+                        dots.style.display = "inline";
+                        btnText.innerHTML = "Läs mer";
+                        moreText.style.display = "none";
+                    }
+                    else {
+                        dots.style.display = "none";
+                        btnText.innerHTML = "Läs mindre";
+                        moreText.style.display = "inline";
+                    }
+                }
+            </script>
         </div>
         <div class="flex-picture-right-bottom">
             <h2>#4</h2>
-            <a href="~/images/movietheater.jpg" target="_blank">
-                <img src="~/images/movietheater.jpg" alt="">
+            <a href="@Url.Action("Index", "Details", new {imdbID = Model.MovieDetails[3].imdbID })">
+                <img src="@Html.DisplayFor(model => model.MovieDetails[3].Poster)" alt="">
             </a>
-            <h2>Titel</h2>
-            <p>Lorem ipsum Lorem ipsum Lorem ipsum</p>
-            <button class="button-style">Läs mer</button>
+            <h2>@Html.DisplayFor(model => model.MovieDetails[3].Title), @Html.DisplayFor(model => model.MovieDetails[3].Year) </h2>
+
+            <h3>Likes: @Html.DisplayFor(model => model.TopList[3].numberOfLikes)</h3>
+            <h3>Dislikes: @Html.DisplayFor(model => model.TopList[3].numberOfDislikes)</h3>
+
+            <p id="shortPlot">@Model.MovieDetails[3].Plot.Substring(0, 50)<span id="dots3">...</span><span id="more3">@Model.MovieDetails[3].Plot</span></p>
+            <button onclick="plotFunction3()" class="button-style" id="plotButton3">Läs mer</button>
+            <script>
+                function plotFunction3() {
+                    var dots = document.getElementById("dots3");
+                    var moreText = document.getElementById("more3");
+                    var btnText = document.getElementById("plotButton3");
+
+                    if (dots.style.display === "none") {
+                        dots.style.display = "inline";
+                        btnText.innerHTML = "Läs mer";
+                        moreText.style.display = "none";
+                    }
+                    else {
+                        dots.style.display = "none";
+                        btnText.innerHTML = "Läs mindre";
+                        moreText.style.display = "inline";
+                    }
+                }
+            </script>
         </div>
     </div>
 
     <footer>
-
-        <p>Copyright Apollo13</p>
+        <p>© Apollo13</p>
     </footer>
 
 
 </body>
+
 </html>

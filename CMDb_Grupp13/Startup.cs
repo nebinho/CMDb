@@ -25,9 +25,9 @@ namespace CMDb_Grupp13
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped<IRepositoryCmdb, MockCmdbRepo>();
+            services.AddScoped<IRepositoryCmdb, CmdbRepo>();
             services.AddScoped<IApiClientCmdb, ApiClientCmdb>();
-            services.AddScoped<IRepositoryOmdb, MockOmdbRepo>();
+            services.AddScoped<IRepositoryOmdb, OmdbRepo>();
             services.AddScoped<IApiClientOmdb, ApiClientOmdb>();
             services.AddControllersWithViews();
         }

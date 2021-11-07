@@ -47,6 +47,10 @@ namespace CMDb_Grupp13.Infrastructure
                     var data = JsonConvert.DeserializeObject<SearchDto>(responseJson);
                     return data;
                 }
+                if (response.StatusCode == HttpStatusCode.TooManyRequests)  
+                {
+                    throw new Exception("För många anrop mot api");
+                }
 
                 throw new Exception("Kunde inte etablera en kontakt med API:t");
             }
